@@ -2,7 +2,7 @@
 //  main.c
 //  LA_guiao1
 //
-//  Created by Diogo Neto on 20/03/2021.
+//  Created by G10
 //
 
 #include <stdio.h>
