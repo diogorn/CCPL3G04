@@ -3,12 +3,19 @@
 #include <string.h>
 #include "parser.h"
 
-// analisa as variaveis e a operação
-
 void myparser (char *line){
     char *delims = " \t\n";
     
     for (char *token = strtok(line, delims); token != NULL; token = strtok(NULL, delims)){
-        printf("%s\n", token);
-    }
+        char *sobra;
+        long val_i = strtol(token, &sobra, 10);
+        if (strlen (sobra) == 0){
+            printf("INT: %ld\n", val_i);
+        } else {
+             double val_d = strtod(token, &sobra);
+             if (strlen (sobra)==0){
+                   printf("DOUBLE: %lf\n", val_d);}
+             } else {
+                 printf("%s\n", token); }
 }
+
