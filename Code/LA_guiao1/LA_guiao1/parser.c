@@ -36,7 +36,14 @@ void parser(char *linha){
                   long y = POP();
                   long x = POP();
                   PUSH(x - y);
-        }
+        } else if (strcmp(token, "&") == 0){
+                   long y = POP();
+                   long x = POP();
+                   PUSH(x & y);
+        } else if (strcmp(token, "|") == 0){
+                   long y = POP();
+                   long x = POP();
+                   PUSH(x | y);
         
     }
 }
