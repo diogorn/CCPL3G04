@@ -37,6 +37,6 @@ void parser(char *linha){
                   long x = POP();
                   PUSH(x - y);
         }
-        
+        §
     }
 }
