@@ -27,7 +27,7 @@ void print_stack(STACK s) {
 
 int main() {
  
-//    pusch
+//    push
 //    pop 
   STACK s = criar_stack();
   

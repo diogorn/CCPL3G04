@@ -10,7 +10,6 @@
 		540DC39C2609153B00E83EA6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 540DC39B2609153B00E83EA6 /* main.c */; };
 		540DC3A52609177F00E83EA6 /* parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 540DC3A42609177F00E83EA6 /* parser.c */; };
 		540DC3A92609179000E83EA6 /* stack.c in Sources */ = {isa = PBXBuildFile; fileRef = 540DC3A82609179000E83EA6 /* stack.c */; };
-		540DC3AD26091E7700E83EA6 /* token.c in Sources */ = {isa = PBXBuildFile; fileRef = 540DC3AC26091E7700E83EA6 /* token.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,8 +31,6 @@
 		540DC3A42609177F00E83EA6 /* parser.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = parser.c; sourceTree = "<group>"; };
 		540DC3A72609179000E83EA6 /* stack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 		540DC3A82609179000E83EA6 /* stack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stack.c; sourceTree = "<group>"; };
-		540DC3AB26091E7700E83EA6 /* token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
-		540DC3AC26091E7700E83EA6 /* token.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = token.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +67,6 @@
 				540DC3A32609177F00E83EA6 /* parser.h */,
 				540DC3A42609177F00E83EA6 /* parser.c */,
 				540DC3A72609179000E83EA6 /* stack.h */,
-				540DC3AB26091E7700E83EA6 /* token.h */,
-				540DC3AC26091E7700E83EA6 /* token.c */,
 				540DC3A82609179000E83EA6 /* stack.c */,
 			);
 			path = La_guiao1;
@@ -134,7 +129,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				540DC3A92609179000E83EA6 /* stack.c in Sources */,
-				540DC3AD26091E7700E83EA6 /* token.c in Sources */,
 				540DC3A52609177F00E83EA6 /* parser.c in Sources */,
 				540DC39C2609153B00E83EA6 /* main.c in Sources */,
 			);
