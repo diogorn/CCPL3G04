@@ -1,6 +1,18 @@
-#ifndef stack_h
-#define stack_h
+#define STACK_H_INCLUDED
 
-#include <stdio.h>
+#define T 10240
 
-#endif /* stack_h */
+typedef struct{
+    typedef struct{
+    int a[T];
+    int top;
+} MyStack;
+
+void inicia_Stack (MyStack *p);
+int vazia (MyStack p*);
+int cheia (MyStack *p);
+void push (MyStack *p, int x);
+int pop (MyStack *p);
+
+
+#endif // STACK_H_INCLUDED
