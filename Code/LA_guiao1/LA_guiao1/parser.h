@@ -3,5 +3,6 @@
 
 #include <stdio.h>
 
+void parser(char *linha);
 
 #endif /* parser_h */

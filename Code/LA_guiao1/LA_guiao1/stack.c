@@ -1,18 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack.h">
-#define T 10240
 
-typedef struct{
-    int a[T];
-    int top;
-} MyStack;
+#include "stack.h"
 
-void inicia_Stack (MyStack p){
+#define T    10240
+
+typedef struct {
+  long a[T]; // Array que armazena os elementos da stack
+  int pos; // Nº de elementos  na stack (e indiretamente a sua posição)
+} STACK;
+
+int inicia_Stack (MyStack *p){
     p->top = -1;
+    
+    return p;
 }
 
-int vazia (MyStack p){
+int vazia (MyStack *p){
     if(p->top == -1){
         return 1;
     } else {
@@ -44,6 +48,6 @@ int pop (MyStack *p){
     } else {
         aux = p->a[p->top];
         p->top--;
-        return aux;
     }
+    return aux;
 }
