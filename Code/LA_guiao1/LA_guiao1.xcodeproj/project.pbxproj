@@ -64,10 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				540DC39B2609153B00E83EA6 /* main.c */,
-				540DC3A32609177F00E83EA6 /* parser.h */,
 				540DC3A42609177F00E83EA6 /* parser.c */,
-				540DC3A72609179000E83EA6 /* stack.h */,
 				540DC3A82609179000E83EA6 /* stack.c */,
+				540DC3A32609177F00E83EA6 /* parser.h */,
+				540DC3A72609179000E83EA6 /* stack.h */,
 			);
 			path = La_guiao1;
 			sourceTree = "<group>";

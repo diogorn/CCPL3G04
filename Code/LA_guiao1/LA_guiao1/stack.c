@@ -10,10 +10,9 @@ typedef struct {
   int pos; // Nº de elementos  na stack (e indiretamente a sua posição)
 } STACK;
 
-int inicia_Stack (MyStack *p){
+void inicia_Stack (MyStack *p){
     p->top = -1;
     
-    return p;
 }
 
 int vazia (MyStack *p){
@@ -32,7 +31,7 @@ int cheia (MyStack *p){
     }
 }
 
-void push (MyStack *p, int x){
+void PUSH (MyStack *p, int x){
     if(cheia(p) == 1){
         printf ("Pilha Cheia!");
     } else {
@@ -41,7 +40,7 @@ void push (MyStack *p, int x){
     }
 }
 
-int pop (MyStack *p){
+int POP (MyStack *p){
     int aux; // recebe o valor da pilha para depois retornar
     if(vazia(p) == 1){
         printf ("Pilha Vazia!");

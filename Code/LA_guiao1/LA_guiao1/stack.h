@@ -8,7 +8,7 @@ typedef struct{
     int top;
 } MyStack;
 
-int inicia_Stack (MyStack *p);
+void inicia_Stack (MyStack *p);
 int vazia (MyStack *p);
 int cheia (MyStack *p);
 void push (MyStack *p, int x);
