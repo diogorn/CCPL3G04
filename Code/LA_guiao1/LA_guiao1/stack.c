@@ -8,10 +8,11 @@
 typedef struct {
   long a[T]; // Array que armazena os elementos da stack
   int pos; // Nº de elementos  na stack (e indiretamente a sua posição)
-} STACK;
+} MyStack;
 
-void inicia_Stack (MyStack *p){
-    p->top = -1;
+void inicia_Stack (){
+    MyStack p;
+    p.top = -1;
     
 }
 

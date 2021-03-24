@@ -5,7 +5,7 @@
 
 typedef struct{
     int a[T];
-    int top;
+    int top=-1;
 } MyStack;
 
 void inicia_Stack (MyStack *p);
