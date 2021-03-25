@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
+#include <assert.h>
 #define SIZE 10240
 
 MyStack inicia_Stack (){
@@ -42,13 +43,13 @@ void PUSH (MyStack *p, long x){
     }
 }
 
-int POP (MyStack *p){
-    int aux; // recebe o valor da pilha para depois retornar
-    if(vazia (*p) == 1){
-        printf ("Pilha Vazia!");
-    } else {
-        aux = p->a[p->topo];
+long POP (MyStack *p){
+    long aux; // recebe o valor da pilha para depois retornar
+    assert (!vazia (*p));
+     
+        
+    aux = p->a[p->topo];
         p->topo--;
-        return aux;
-    }
+    
+    return aux;
 }
