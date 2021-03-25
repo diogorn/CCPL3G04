@@ -1,75 +1,68 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "parser.h"
 #include "stack.h"
+#include "parser.h"
 
-// PARSER PROF. completada com a do grupo
+void parser(char *linha){
+    char *delims = " \t\n";
 
-// strok-parte a string numa sequencia de 0 ou mais tokens nao vazios .. na primeira chamada é a string inicial e nas chamadas seguintes ela tem que ser nula
-
-// inicializar stack
- 
-void parser(char *STACK1){
-    char *delimitador = " \t\n";
-     criar_stack();
+    MyStack p = inicia_Stack ();
     
-    for(char *token = strtok(STACK1, delimitador); token != NULL; token = strtok(NULL, delimitador)){
+    for (char *token = strtok(linha, delims); token != NULL; token = strtok(NULL,delims)){
         char *sobra;
-        int pos=0;
-        
-        long valor = strtol(token, &sobra, 10);   // strtol - separar por inteiros
-        if(strlen(sobra)==0){ 
-            PUSH(STACK1, pos);
-        } else if (strcmp(token, "+")==0){      // string compare
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x+y);
-        } else if (strcmp(token, "-")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x - y);
-        } else if (strcmp(token, "*")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x * y);
-        } else if (strcmp(token, "/")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x / y);
-        } else if (strcmp(token, "#")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x # y);
-        } else if (strcmp(token, "&")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x & y);
-        } else if (strcmp(token, "|")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x | y);
-        } else if (strcmp(token, "^")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x ^ y);
-        } else if (strcmp(token, "~")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x ~ y);
-        } else if (strcmp(token, "%")==0){
-                  long y = POP(STACK1);
-                  long x = POP(STACK1);
-                  PUSH(x % y);
+        long val_i = strtol(token, &sobra, 10);
+        if(strlen(sobra) == 0){
+                 PUSH(MyStack p,val_i);
+        } else if (strcmp(token, "+") == 0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x + y));
+        } else if (strcmp(token, "-") == 0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x - y));
+        } else if (strcmp(token, "*") == 0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x * y));
+        } else if (strcmp(token, "/") == 0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x / y));
+        } else if (strcmp(token, "#") == 0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x # y));
+        } else if (strcmp(token, "&") == 0){
+                   long y = POP(MyStack p);
+                   long x = POP(MyStack p);
+                   PUSH(MyStack p, (x & y));
+        } else if (strcmp(token, "|") == 0){
+                   long y = POP(MyStack p);
+                   long x = POP(MyStack p);
+                   PUSH(MyStack p, (x | y));
+        } else if (strcmp(token, "^") == 0){
+                   long y = POP(MyStack p);
+                   long x = POP(MyStack p);
+                   PUSH(MyStack p, (x ^ y));
+        } else if (strcmp(token, "~") == 0){
+                   long y = POP(MyStack p);
+                   long x = POP(MyStack p);
+                   PUSH(MyStack p, (x ~ y));
+        } } else if (strcmp(token, "%")==0){
+                  long y = POP(MyStack p);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p,(x % y));
         } else if (strcmp(token, "(")==0){
-                  long x = POP(STACK1);
-                  PUSH(x+1);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x+1));
         } else if (strcmp(token, ")")==0){
-                  long x = POP(STACK1);
-                  PUSH(x-1);
+                  long x = POP(MyStack p);
+                  PUSH(MyStack p, (x-1));
         }
-    }
     PRINT_STACK();
-
 }
+
 
