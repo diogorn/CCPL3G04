@@ -1,35 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "stack.h"
+#define SIZE 10240
 
-#define SIZE  10240
-
-
-
-
-void print_stack(STACK1 s) {
-  printf("Stack: ");
-  for(int k = 0; k < s.pos; k++)
-    printf("\t%3ld", s.array[k]);
-  printf("\n");
+MyStack inicia_Stack (){
+    MyStack p;
+    p.topo = -1;
+    return p;
 }
 
-
-
-int main() {
-  STACK1 s = criar_stack();
-  char op = '&';
-  PUSH(s, 2);
-  PUSH(s, 6);
-  PUSH(s, 2);
-  print_stack(s);
-  switch(op) {
-    case '+': SOMAR(s); break;
-    case '-': SUBTR(s); break;
-    case '*': MULT(s); break;
-    case '/': DIV(s); break;
-    case '&': AND(s); break;
-  }
-  print_stack(s);
+int vazia (MyStack p){
+    if(p.topo == -1){
+        return 1;
+    } else {
+        return 0;
+    }
 }
+
+int cheia (MyStack p){
+    if(p.topo == SIZE-1){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+void PUSH (MyStack p, long x){
+    if(cheia(MyStack p) == 1){
+        printf ("Pilha Cheia!");
+    } else {
+        p.topo++;
+        p.a[p.topo] = x; //vamos guardar a variavel x e guardar dentro da pilha na posição topo
+    }
+}
+
+int POP (MyStack p){
+    int aux; // recebe o valor da pilha para depois retornar
+    if(vazia (MyStack p) == 1){
+        printf ("Pilha Vazia!");
+        return 
+    } else {
+        aux = p.a[p.topo];
+        p.topo--;
+        return aux;
+    }
+}
+
+ // porque é que está a pedir uma expressão antes no MyStack na linha 28 e 38
