@@ -10,11 +10,11 @@
 
 
 int main() {
-    char MyStack[SIZE];
+    char linha[SIZE];
       
-    assert( fgets(MyStack, SIZE, stdin) != NULL); // le a srting
-    assert( MyStack[strlen(MyStack) - 1] == '\n'); // ve se o ultimo caractrer é \n
+    assert( fgets(linha, SIZE, stdin) != NULL); // le a srting
+    assert( linha[strlen(linha) - 1] == '\n'); // ve se o ultimo caractrer é \n
     
-    parser(char *linha);
+    parser(linha);
     return 0;
 }

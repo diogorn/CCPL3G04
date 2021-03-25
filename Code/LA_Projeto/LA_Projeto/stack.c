@@ -11,7 +11,7 @@ MyStack inicia_Stack (){
 
 void PRINT_STACK(MyStack *p){
     int i;
-    for (i=0; i<p->topo; i++){
+    for (i=0; i <= p->topo; i++){
         printf("%ld",p->a[i]);
     }
     printf("\n");

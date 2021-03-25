@@ -62,8 +62,8 @@ void parser(char *linha){
                   long x = POP(p);
                   PUSH(p, (x-1));
         }
-    PRINT_STACK(*p);
     }
+    PRINT_STACK(p);
 }
 
 
