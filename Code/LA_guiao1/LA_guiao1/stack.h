@@ -11,8 +11,8 @@ typedef struct{
 void inicia_Stack (MyStack *p);
 int vazia (MyStack *p);
 int cheia (MyStack *p);
-void push (MyStack *p, int x);
-int pop (MyStack *p);
+void PUSH (MyStack *p, int x);
+int POP (MyStack *p);
 
 
 #endif // STACK_H_INCLUDED

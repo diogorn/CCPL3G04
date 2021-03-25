@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "stack.h"
 #include "parser.h"
 
 void parser(char *linha){
