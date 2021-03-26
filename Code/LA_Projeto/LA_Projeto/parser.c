@@ -54,17 +54,17 @@ void parser(char *linha){
                    PUSH(p, ~ x);
         } else if (strcmp(token, "%")==0){
                   long x = POP(p);
-                  PUSH(p,(abs(x)));
+                  PUSH(p,(labs(x)));
         } else if (strcmp(token, "(")==0){
                   long x = POP(p);
-                  PUSH(p, (x+1));
+                  PUSH(p, (x-1));
         } else if (strcmp(token, ")")==0){
                   long x = POP(p);
-                  PUSH(p, (x-1));
+                  PUSH(p, (x+1));
         }
     }
     PRINT_STACK(p);
 }
 
 
-
+// ERRO: % 
