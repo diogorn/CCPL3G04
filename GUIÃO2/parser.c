@@ -62,10 +62,26 @@ void parser(char *linha){
         } else if (strcmp(token, ")")==0){
                   long x = POP(p);
                   PUSH(p, (x+1));
-        }
+        } else if (strcmp(token, "_")==0){
+                  long x = POP(p);
+                  PUSH(p, x);
+                  PUSH(p, x);
+        }// else if (strcmp(token, ";")){
+//                  long x = POP(p);
+//                  long y = POP(p);
+//                  PUSH(p, y);
+//
+//        } else if (strcmp(token, "\\")){
+//            long x = POP(p);
+//            long y = POP(p);
+//            PUSH(p, y);
+//            PUSH(p, x);
+//        }
+//
     }
     PRINT_STACK(p);
 }
 
 
-// ERRO: % 
+
+// erro: ^

@@ -6,7 +6,7 @@
 #include "stack.h"
 #include "parser.h"
 
-void parser(char *linha){
+void parser(char *linha){ // recebe
     char *delims = " \t\n";
 
     MyStack s = inicia_Stack ();
@@ -68,4 +68,5 @@ void parser(char *linha){
 }
 
 
-// ERRO: % 
+
+// erro: ^
