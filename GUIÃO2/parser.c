@@ -1,3 +1,7 @@
+/**
+ * \brief Esta é a função que vai fazer o parse de uma linha
+ * @param line A linha que foi lida e da qual se vai fazer o parse
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
