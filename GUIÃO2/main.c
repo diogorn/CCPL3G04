@@ -1,5 +1,5 @@
 /**
- * @file Ficheiro que contém a função principal de todo o programa
+ * @file Ficheiro que contém a função que imprime a stack e a função principal de todo o programa
  */
 #include <stdio.h>  
 #include <assert.h> 
