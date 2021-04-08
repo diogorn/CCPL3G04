@@ -1,15 +1,25 @@
+/**
+ * @file Este ficheiro contém todas aa funções relativas à stack.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
 #include <assert.h>
 #define SIZE 10240
 
+/**
+ * \brief Esta é a função responsável por criar espaço para uma stack 
+ * @returns O valor do apontador para a stack criada. 
+ */
 MyStack inicia_Stack (){
     MyStack p;
     p.topo = -1;
     return p;
 }
 
+/**
+ * \brief A função imprime a stack.
+ */
 void PRINT_STACK(MyStack *p){
     int i;
     for (i=0; i <= p->topo; i++){
@@ -18,6 +28,10 @@ void PRINT_STACK(MyStack *p){
     printf("\n");
 }
 
+/**
+ * \brief A função verifica se a stack está vazia.
+ * @returns Devolve uma .
+ */
 int vazia (MyStack p){
     if(p.topo == -1){
         return 1;
