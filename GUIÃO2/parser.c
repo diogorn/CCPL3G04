@@ -93,16 +93,16 @@ void parser(char *linha){
         } else if (strcmp(token, "\\") == 0){
             long x = POP(p);
             long y = POP(p);
-            PUSH(p, y);
             PUSH(p, x);
+            PUSH(p, y);
 
         } else if (strcmp(token, "@") == 0){
             long x = POP(p);
             long y = POP(p);
             long z = POP(p);
             PUSH(p, y);
-            PUSH(p, z);
             PUSH(p, x);
+            PUSH(p, z);
 
         } else if (strcmp(token, "$") == 0){
             long x = POP(p);
