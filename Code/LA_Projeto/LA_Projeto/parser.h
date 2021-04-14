@@ -1,1 +1,0 @@
-void parser(char *linha);
