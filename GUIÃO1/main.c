@@ -1,14 +1,20 @@
-#include <stdio.h>  // esta biblioteca define algumas funções e macros (como NULL) relativas às operações de imput/output
-#include <assert.h> // esta biblioteca define uma função (assert) utilizada para verificar suposições feitas pelo programa. Sempre que a expressão passada como argumento é falsa, escreve uma mensagem de diagnostico
-#include <stdlib.h> // esta biblioteca possui funções envolvendo alocação de memória, controle de processos e conversões
-#include <string.h> // esta biblioteca cria funções que permitem manipular strings e caracteres
+/**
+ * @file Ficheiro que contém a função que imprime a stack e a função principal de todo o programa
+ */
+#include <stdio.h> 
+#include <assert.h> 
+#include <stdlib.h> 
+#include <string.h> 
 
 #include "parser.h"
 #include "stack.h"
 
-#define SIZE 10240 // definimos uma macro para o tamanho da linha, neste caso 10204 caracteres
+#define SIZE 10240
 
-
+/**
+ * Esta função é a função principal do programa.
+ * @return O valor 0
+ */
 int main() {
     char linha[SIZE]; // definimos uma variavel do tipo char com o tamanho definido na macro
     
