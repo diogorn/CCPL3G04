@@ -27,7 +27,7 @@ typedef struct Pilha{
     Data *stack;
     long line[SIZE]; // esta linha é necessária??
     int size;
-//    int topo;
+    int topo;
     int n_elementos;
 }MyStack;
 
