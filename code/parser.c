@@ -15,6 +15,15 @@ double GET_AS_DOUBLE(Data d){
         default: assert(0 && "a tentar converter algo");
     }
 }
+double GET_AS_LONG(Data d){
+    switch (d.tipo) {
+        case CHAR: return d.LONG;
+        case LONG: return d.LONG;
+        case DOUBLE: return d.LONG;
+        default: assert(0 && "a tentar converter algo");
+    }
+}
+
 
 void parser (char *line){
     char *delimita = " \t\n";
@@ -75,35 +84,42 @@ void parser (char *line){
             PUSH_DOUBLE(p, pow(dx,dy));
             //  bitwise ou o módulo da divisão nunca vão ser testados com doubles.
         } else if (strcmp(token, "&") == 0){
-//            Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
-//            Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//            Data e = (x & y);
-//            double de = GET_AS_DOUBLE(e);
-//            PUSH_LONG(p, de);
-//        } else if (strcmp(token, "|") == 0){
-//            Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
-//            Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//            PUSH_DOUBLE(p, (x | y));
-//        } else if (strcmp(token, "^") == 0){ ** nao double
-//            Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
-//            Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//                   PUSH(p, (x ^ y));
-//        } else if (strcmp(token, "~") == 0){
-//            Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
-//                   PUSH(p, ~ x);
-//        } else if (strcmp(token, "%")==0){ ** nao double
-//            Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
-//            Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//                  PUSH(p,(y%x));
+            Data x = POP(p);
+            long dx = GET_AS_LONG(x);
+            Data y = POP(p);
+            long dy =  GET_AS_LONG(y);;
+            PUSH_LONG(p, dx&dy);
+            
+        } else if (strcmp(token, "|") == 0){
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            Data y = POP(p);
+            long ly =  GET_AS_LONG(y);
+            
+            PUSH_LONG(p, lx|ly);
+            
+        } else if (strcmp(token, "^") == 0){ // ** nao double
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            Data y = POP(p);
+            long ly =  GET_AS_LONG(y);
+            
+            PUSH_LONG(p, lx^ly);
+            
+        } else if (strcmp(token, "~") == 0){
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            
+            PUSH_DOUBLE(p, ~ lx);
+            
+        } else if (strcmp(token, "%")==0){
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            Data y = POP(p);
+            long ly =  GET_AS_LONG(y);
+            
+            PUSH_LONG(p,(ly%lx));
+            
         } else if (strcmp(token, "(")==0){
             Data x = POP(p);
             double dx = GET_AS_DOUBLE(x);
@@ -143,8 +159,8 @@ void parser (char *line){
             PUSH_DOUBLE(p, dy);
             PUSH_DOUBLE(p, dx);
             PUSH_DOUBLE(p, dz);
-//
-//        } else if (strcmp(token, "$") == 0){
+
+        } else if (strcmp(token, "$") == 0){
 //            long x = POP(p);
 //            long y = POP(p);
 //            PUSH(p, x);
@@ -152,7 +168,52 @@ void parser (char *line){
 //            Data inteiro;
 //            fgets(inteiro.LONG, 1, stdin);
 //            PUSH(p, inteiro);
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            for (int i=p->n_elementos; i<lx; i--) {
+                char pilhaAuxiliar[p->n_elementos];
+                strcpy(p, pilhaAuxiliar);
+                if (i==0) {
+                    PUSH_STRING(p, pilhaAuxiliar);
+                } else {
+                    POP(pilhaAuxiliar);
+                }
+            }
+            
+        } else if (strcmp(token, "l") == 0){
+
+            
+            char nome[1000];
+            char *estado;
+            estado = fgets(nome, 1000, stdin);
+            char *target = strdup(estado);
+            PUSH_STRING(p, target);
+            
+            
+        } else if (strcmp(token, "i") == 0){
+            if (has_type(topo(p), STRING)) {
+                char *a = POP_STRING(p);
+                PUSH_LONG(p, atoi(a));
+            } else {
+                PUSH_LONG(p, (long) POP_DOUBLE(p));
+            }
+        } else if (strcmp(token, "f") == 0){
+            if (has_type(topo(p), STRING)) {
+                char *a = POP_STRING(p);
+                PUSH_DOUBLE(p, atof(a));
+            } else {
+                PUSH_DOUBLE(p, (long) POP_DOUBLE(p));
+            }
+        } else if (strcmp(token, "c") == 0){
+            if (has_type(topo(p), LONG)) {
+                long a = POP_LONG(p);
+                char c = a;
+                PUSH_CHAR(p, c);
+            } else {
+                PUSH_CHAR(p, (long) POP_LONG(p));
+            }
         }
+
     }
     PRINT_STACK(p);
 }
