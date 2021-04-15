@@ -5,7 +5,7 @@
 #include "stack.h"
 
 int has_type (Data elem, int bytes){
-    return (elem.NBytes & bytes);
+    return (elem.tipo & bytes);
 }
 // Funções que retribuem infos da stack
 MyStack *inicia_MyStack(){
@@ -22,20 +22,31 @@ int is_empty(MyStack *p) {
 Data topo(MyStack *p) {
   return p->stack[p->n_elementos - 1];
 }
+void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type){
+    Data d;
+    switch (d.tipo) {
+        case CHAR: d.tipo = CHAR; d.CHAR = value;
+    }
+    PUSH(p, d);
+}
 
 void PRINT_STACK(MyStack *p) {
-    for (int i=0; i <= p->n_elementos; i++){
+    for (int i=0; i < p->n_elementos; i++){
         Data elem = p->stack[i];
-        TYPE wichType = elem.NBytes;
+        TYPE wichType = elem.tipo;
         
         switch(wichType){
-            case LONG: printf("%ld", elem.LONG);
+            case LONG:
+                printf("%ld", elem.LONG);
                 break;
-            case DOUBLE: printf("%g", elem.DOUBLE);
+            case DOUBLE:
+                printf("%g", elem.DOUBLE);
                 break;
-            case CHAR: printf("%c", elem.CHAR);
+            case CHAR:
+                printf("%c", elem.CHAR);
                 break;
-            case STRING: printf("%s", elem.STRING);
+            case STRING:
+                printf("%s", elem.STRING);
                 break;
         }
     }
@@ -60,16 +71,16 @@ void PUSH(MyStack *p, Data elem) {
 
 // macros
 
-#define MyStack_OPERATION(_NBytes, _name)       \
-  void PUSH_##_name(MyStack *s, _NBytes val) {  \
+#define MyStack_OPERATION(_tipo, _name)         \
+  void PUSH_##_name(MyStack *s, _tipo val) {    \
     Data elem;                                  \
-    elem.NBytes = _name;                        \
+    elem.tipo = _name;                          \
     elem._name = val;                           \
     PUSH(s, elem);                              \
   }                                             \
-  _NBytes POP_##_name(MyStack *s) {             \
+  _tipo POP_##_name(MyStack *s) {               \
     Data elem = POP(s);                         \
-    assert(elem.NBytes == _name);               \
+    assert(elem.tipo == _name);                 \
     return elem._name;                          \
   }
 

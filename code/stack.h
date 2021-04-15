@@ -16,7 +16,7 @@ typedef enum tipo{
 
 // vai ajudar a definir o tipo de dados com a função vai trabalhar
 typedef struct TipoDados{
-    TYPE NBytes;
+    TYPE tipo;
     long LONG;
     double DOUBLE;
     char CHAR;
@@ -25,7 +25,7 @@ typedef struct TipoDados{
 // --------------------------------------
 typedef struct Pilha{
     Data *stack;
-    long line[SIZE]; // esta linha é necessária??
+//    long line[SIZE]; // esta linha é necessária??
     int size;
     int topo;
     int n_elementos;
@@ -40,12 +40,13 @@ void PRINT_STACK(MyStack *p);
 
 Data POP(MyStack *p);
 void PUSH(MyStack *p, Data elem);
+void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type);
 
 
 // macros 
-#define MyStack_OPERATION_PROTO(_NBytes, _name)   \
-  void PUSH_##_name(MyStack *s, _NBytes val);     \
-_NBytes POP_##_name(MyStack *s);
+#define MyStack_OPERATION_PROTO(_tipo, _name)   \
+  void PUSH_##_name(MyStack *s, _tipo val);     \
+_tipo POP_##_name(MyStack *s);
 MyStack_OPERATION_PROTO(long, LONG)
 MyStack_OPERATION_PROTO(double, DOUBLE)
 MyStack_OPERATION_PROTO(char, CHAR)

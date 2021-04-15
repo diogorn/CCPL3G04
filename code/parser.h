@@ -1,1 +1,1 @@
-void parser(char *linha);
+void parser (char *linha);
