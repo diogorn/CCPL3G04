@@ -42,252 +42,246 @@ void parser (char *line){
                   y = POP(p);
             }
                if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = x.LONG + y.DOUBLE;
-                   PUSH(p, r);
+                   PUSH_LONG(p, x.LONG);
+                   PUSH_DOUBLE(p, y.DOUBLE);
                   
                } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE + y.LONG;
-                      PUSH(p, r);
+                   PUSH_DOUBLE(p, x.DOUBLE);
+                   PUSH_LONG(p, y.LONG);
+
                } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE + y.DOUBLE;
-                      PUSH(p, r);
+                   PUSH_DOUBLE(p, x.DOUBLE);
+                   PUSH_DOUBLE(p, y.DOUBLE);
                } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG + y.LONG;
-                      PUSH(p, r);
+                   PUSH_LONG(p, x.LONG);
+                   PUSH_LONG(p, y.LONG);
                }
             
-//                  Data i;
-//                  i.DOUBLE = x.LONG + y.DOUBLE;
-//                  PUSH(p, i);
             
         
-        } else if (strcmp(token, "-") == 0){
-            
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = x.LONG - y.DOUBLE;
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE - y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE - y.DOUBLE;
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.LONG = x.LONG - y.LONG;
-                      PUSH_LONG (p, r);
-
-               }
-        } else if (strcmp(token, "*") == 0){
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = x.LONG * y.DOUBLE;
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE * y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE * y.DOUBLE;
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG * y.LONG;
-                      PUSH(p, r);
-               }
-
-        } else if (strcmp(token, "/") == 0){ // como fazer divisao inteira
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = x.LONG / y.DOUBLE;
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE / y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE / y.DOUBLE;
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG / y.LONG;
-                      PUSH(p, r);
-               }
-        } else if (strcmp(token, "#") == 0){
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = pow(x.LONG, y.DOUBLE);
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = pow(x.DOUBLE, y.LONG);
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = pow(x.DOUBLE, y.DOUBLE);
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = pow(x.LONG, y.LONG);
-                      PUSH(p, r);
-               }
-
-        } else if (strcmp(token, "&") == 0){
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){
-                   Data r;
-                   r.DOUBLE = x.LONG & y.LONG;
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG & y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.LONG & y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG & y.LONG;
-                      PUSH(p, r);
-               }
-        } else if (strcmp(token, "|") == 0){
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-        
-            Data y;
-            if((has_type(topo(p), LONG))){
-                  y = POP(p);
-            } else if((has_type(topo(p), DOUBLE))){
-                  y = POP(p);
-            }
-               if(has_type(x, LONG) && has_type(y, DOUBLE)){ //isto é feito so para ints, converter doubles em ints?
-                   Data r;
-                   r.DOUBLE = x.LONG / y.DOUBLE;
-                   PUSH(p, r);
-                  
-               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE / y.LONG;
-                      PUSH(p, r);
-               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
-                      Data r;
-                      r.DOUBLE = x.DOUBLE / y.DOUBLE;
-                      PUSH(p, r);
-               } else if(has_type(x, LONG) && has_type(y, LONG)){
-                      Data r;
-                      r.DOUBLE = x.LONG / y.LONG;
-                      PUSH(p, r);
-               }
-//        } else if (strcmp(token, "^") == 0){  isto é feito so para ints, converter doubles em ints?
-
-        } else if (strcmp(token, "~") == 0){
-            Data x;
-            if((has_type(topo(p), LONG))){
-                  x = POP(p);
-            }  else if((has_type(topo(p), DOUBLE))){
-                  x = POP(p);
-            }
-            if(has_type(x, LONG)){
-                Data r;
-                r.DOUBLE = ~ x.LONG;
-                PUSH(p, r);
-               
-            } else if (has_type(x, DOUBLE)){
-                   Data r;
-                r.DOUBLE = ~ x.LONG;
-                   PUSH(p, r);
-            } else if(has_type(x, DOUBLE)){
-                   Data r;
-                r.DOUBLE = ~ x.LONG;
-                   PUSH(p, r);
-            } else if(has_type(x, LONG)){
-                   Data r;
-                r.DOUBLE = ~ x.LONG;
-                   PUSH(p, r);
-            }
+//        } else if (strcmp(token, "-") == 0){
+//
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){
+//                   Data r;
+//                   r.DOUBLE = x.LONG - y.DOUBLE;
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE - y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE - y.DOUBLE;
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.LONG = x.LONG - y.LONG;
+//                      PUSH_LONG (p, r);
+//
+//               }
+//        } else if (strcmp(token, "*") == 0){
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){
+//                   Data r;
+//                   r.DOUBLE = x.LONG * y.DOUBLE;
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE * y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE * y.DOUBLE;
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG * y.LONG;
+//                      PUSH(p, r);
+//               }
+//
+//        } else if (strcmp(token, "/") == 0){ // como fazer divisao inteira
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){
+//                   Data r;
+//                   r.DOUBLE = x.LONG / y.DOUBLE;
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE / y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE / y.DOUBLE;
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG / y.LONG;
+//                      PUSH(p, r);
+//               }
+//        } else if (strcmp(token, "#") == 0){
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){
+//                   Data r;
+//                   r.DOUBLE = pow(x.LONG, y.DOUBLE);
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = pow(x.DOUBLE, y.LONG);
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = pow(x.DOUBLE, y.DOUBLE);
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = pow(x.LONG, y.LONG);
+//                      PUSH(p, r);
+//               }
+//
+//        } else if (strcmp(token, "&") == 0){
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){
+//                   Data r;
+//                   r.DOUBLE = x.LONG & y.LONG;
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG & y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG & y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG & y.LONG;
+//                      PUSH(p, r);
+//               }
+//        } else if (strcmp(token, "|") == 0){
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//
+//            Data y;
+//            if((has_type(topo(p), LONG))){
+//                  y = POP(p);
+//            } else if((has_type(topo(p), DOUBLE))){
+//                  y = POP(p);
+//            }
+//               if(has_type(x, LONG) && has_type(y, DOUBLE)){ //isto é feito so para ints, converter doubles em ints?
+//                   Data r;
+//                   r.DOUBLE = x.LONG / y.DOUBLE;
+//                   PUSH(p, r);
+//
+//               } else if (has_type(x, DOUBLE) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE / y.LONG;
+//                      PUSH(p, r);
+//               } else if(has_type(x, DOUBLE) && has_type(y, DOUBLE)){
+//                      Data r;
+//                      r.DOUBLE = x.DOUBLE / y.DOUBLE;
+//                      PUSH(p, r);
+//               } else if(has_type(x, LONG) && has_type(y, LONG)){
+//                      Data r;
+//                      r.DOUBLE = x.LONG / y.LONG;
+//                      PUSH(p, r);
+//               }
+////        } else if (strcmp(token, "^") == 0){  isto é feito so para ints, converter doubles em ints?
+//
+//        } else if (strcmp(token, "~") == 0){
+//            Data x;
+//            if((has_type(topo(p), LONG))){
+//                  x = POP(p);
+//            }  else if((has_type(topo(p), DOUBLE))){
+//                  x = POP(p);
+//            }
+//            if(has_type(x, LONG)){
+//                Data r;
+//                r.DOUBLE = ~ x.LONG;
+//                PUSH(p, r);
+//
+//            } else if (has_type(x, DOUBLE)){
+//                   Data r;
+//                r.DOUBLE = ~ x.LONG;
+//                   PUSH(p, r);
+//            } else if(has_type(x, DOUBLE)){
+//                   Data r;
+//                r.DOUBLE = ~ x.LONG;
+//                   PUSH(p, r);
+//            } else if(has_type(x, LONG)){
+//                   Data r;
+//                r.DOUBLE = ~ x.LONG;
+//                   PUSH(p, r);
+//            }
 
 //        } else if (strcmp(token, "%") == 0){
 //                  long x = POP(p);
