@@ -170,17 +170,11 @@ void parser (char *line){
             PUSH_DOUBLE(p, dz);
 
         } else if (strcmp(token, "$") == 0){
-//            long x = POP(p);
-//            long y = POP(p);
-//            PUSH(p, x);
-//            PUSH(p, x);} //else if (strcmp(token, "l i") == 0){
-//            Data inteiro;
-//            fgets(inteiro.LONG, 1, stdin);
-//            PUSH(p, inteiro);
-            Data x = POP(p);
-            long lx = GET_AS_LONG(x);
-            for (int i=p->n_elementos+(lx+1); i<p->n_elementos; i++) {
-                
+    int posicaoDoN = GET_AS_LONG(POP(p));
+            int idx = p->n_elementos - posicaoDoN;
+            
+            Data valor  = p->stack[idx];
+            PUSH(p, valor);
             }
 //            7 2 3 2 $ -> 7237
         } else if (strcmp(token, "l") == 0){
