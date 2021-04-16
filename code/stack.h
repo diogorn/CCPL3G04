@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#define SIZE 10240
+
 typedef enum tipo{
     LONG=1, DOUBLE=2, CHAR=4, STRING=8
 }TYPE;
