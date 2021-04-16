@@ -7,7 +7,6 @@
 #include "parser.h"
 #include "stack.h"
 
-// conversores
 double GET_AS_DOUBLE(Data d){
     switch (d.tipo) {
         case CHAR: return d.CHAR;
