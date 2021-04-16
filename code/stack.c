@@ -45,13 +45,14 @@ int is_empty(MyStack *p) {
 Data topo(MyStack *p) {
   return p->stack[p->n_elementos - 1];
 }
-void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type){
-    Data d;
-    switch (d.tipo) {
-        case CHAR: d.tipo = CHAR; d.CHAR = value;
-    }
-    PUSH(p, d);
-}
+
+//void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type){
+//    Data d;
+//    switch (d.tipo) {
+//        case CHAR: d.tipo = CHAR; d.CHAR = value;
+//    }
+//    PUSH(p, d);
+//}
 
 /**
  * @brief Função que imprime a stack 
