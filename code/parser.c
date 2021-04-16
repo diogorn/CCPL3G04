@@ -79,18 +79,31 @@ void parser (char *line){
             
         } else if (strcmp(token, "/") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
-            
-            PUSH_DOUBLE(p, dy/dx);
+            if (has_type(x, LONG) & has_type(y, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long ly = GET_AS_LONG(y);
+                PUSH_LONG(p, ly/lx);
+                
+            } else {
+               double dx = GET_AS_DOUBLE(x);
+               double dy =  GET_AS_DOUBLE(y);
+                PUSH_DOUBLE(p, dy/dx);
+            }
+
             
         } else if (strcmp(token, "#") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
-            PUSH_DOUBLE(p, pow(dx,dy));
+            if (has_type(x, LONG) & has_type(y, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long ly = GET_AS_LONG(y);
+                PUSH_LONG(p, pow(ly,lx));
+            } else {
+               double dx = GET_AS_DOUBLE(x);
+               double dy =  GET_AS_DOUBLE(y);
+                PUSH_DOUBLE(p, pow(dy, dx));
+            }
             //  bitwise ou o módulo da divisão nunca vão ser testados com doubles.
         } else if (strcmp(token, "&") == 0){
             Data x = POP(p);
@@ -131,13 +144,32 @@ void parser (char *line){
             
         } else if (strcmp(token, "(")==0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
-            PUSH_DOUBLE(p, (dx-1));
+            
+            if (has_type(x, LONG)) {
+                long lx = GET_AS_LONG(x);
+                PUSH_LONG(p, lx-1);
+            } else if ( has_type(x, DOUBLE)){
+               double dx = GET_AS_DOUBLE(x);
+                PUSH_DOUBLE(p, dx-1);
+            } else if (has_type(x, CHAR)){
+                char cx = GET_AS_CHAR(x);
+                PUSH_CHAR(p, cx-1);
+            }
+            
         } else if (strcmp(token, ")")==0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
-            PUSH_DOUBLE(p, (dx+1));
+            if (has_type(x, LONG)) {
+                long lx = GET_AS_LONG(x);
+                PUSH_LONG(p, lx+1);
+            } else if ( has_type(x, DOUBLE)){
+               double dx = GET_AS_DOUBLE(x);
+                PUSH_DOUBLE(p, dx+1);
+            } else if (has_type(x, CHAR)){
+                char cx = GET_AS_CHAR(x);
+                PUSH_CHAR(p, cx+1);
+            }
 
+        
         } else if (strcmp(token, "_") == 0){
             Data x = POP(p);
             PUSH(p, x);
@@ -163,14 +195,10 @@ void parser (char *line){
 
         } else if (strcmp(token, "$") == 0){
             int posicaoDoN = GET_AS_LONG(POP(p));
-            int idx = p->n_elementos - posicaoDoN;
+            int idx = p->n_elementos-1 - posicaoDoN;
             
             Data valor  = p->stack[idx];
             PUSH(p, valor);
-            
-            printf("%d", idx);
-//            7 2 3 2 $ -> 7237
-//            2 1 0
             
         } else if (strcmp(token, "l") == 0){
             char readline[SIZE];
