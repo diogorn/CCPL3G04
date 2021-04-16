@@ -84,7 +84,6 @@ void parser (char *line){
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
                 PUSH_LONG(p, ly/lx);
-                
             } else {
                double dx = GET_AS_DOUBLE(x);
                double dy =  GET_AS_DOUBLE(y);
