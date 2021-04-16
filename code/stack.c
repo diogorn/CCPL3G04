@@ -7,6 +7,12 @@
 
 #include "stack.h"
 
+/**
+ * @brief A função has_type indica o tipo do elemento e o número de bytes utilizados
+ * @param elem Elemento de um determinado tipo Data
+ * @param bytes Número de bytes utilizados pelo elemento
+ * @return Retorna o tipo do elemento analisado e os bytes respetivos 
+ */
 int has_type (Data elem, int bytes){
     return (elem.tipo & bytes);
 }
