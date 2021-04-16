@@ -9,9 +9,6 @@
 
 int main (){
     char line[SIZE];
-//    assert(fgets(line, SIZE, stdin) != NULL);
-//    assert(line[strlen(line -1)] == '\n'); // se o ultimo caracter for \n, a função calcula o comprimento da line e tira-lhe 1
-
     
     parser(fgets(line, SIZE, stdin));
     
