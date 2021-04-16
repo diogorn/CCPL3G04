@@ -37,6 +37,11 @@ int is_empty(MyStack *p) {
   return p->n_elementos == 0;
 }
 
+/**
+ * @brief Retira o elemento que está no topo da stack
+ * @param p Apontador para a stack
+ * @return Retorna a stack sem o elemento do topo
+ */
 Data topo(MyStack *p) {
   return p->stack[p->n_elementos - 1];
 }
