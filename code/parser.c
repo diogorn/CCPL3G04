@@ -52,14 +52,9 @@ void parser (char *line){
         } else if(strlen(sobra2) == 0){
                     PUSH_DOUBLE(p, val_d);
     
-// operações
         } else if (strcmp(token, "+") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//
-//            PUSH_DOUBLE(p, dx+dy);
             
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
@@ -74,11 +69,8 @@ void parser (char *line){
 
         } else if (strcmp(token, "-") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-            
-//            PUSH_DOUBLE(p, dy-dx);
+
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
@@ -90,11 +82,8 @@ void parser (char *line){
             }
         } else if (strcmp(token, "*") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-            
-//            PUSH_DOUBLE(p, dx*dy);
+
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
@@ -131,7 +120,7 @@ void parser (char *line){
                double dy =  GET_AS_DOUBLE(y);
                 PUSH_DOUBLE(p, pow(dy, dx));
             }
-            //  bitwise ou o módulo da divisão nunca vão ser testados com doubles.
+            
         } else if (strcmp(token, "&") == 0){
             Data x = POP(p);
             long dx = GET_AS_LONG(x);
@@ -259,25 +248,5 @@ void parser (char *line){
     }
     PRINT_STACK(p);
 }
-
-
-// 218 _ _ 10 % \ @ 100 / _ 100 * @ _ @ - 10 / \ ; @
-// 218 218 218
-// 218 218 8
-// 218 8 218
-// 8 218 218
-// 8 218 2
-// 8 218 2 2
-// 8 218 2 200
-// 8 2 200 218
-// 8 2 200 218 218
-// 8 2 218 218 200
-// 8 2 218 18
-// 8 2 218 1
-// 8 2 1 218
-// 8 2 1
-// 2
-
-
 
 
