@@ -7,7 +7,6 @@
 int has_type (Data elem, int bytes){
     return (elem.tipo & bytes);
 }
-// Funções que retribuem infos da stack
 MyStack *inicia_MyStack(){
     MyStack *p = (MyStack *) calloc(1, sizeof(MyStack));
     p->size = 100;
@@ -22,15 +21,6 @@ int is_empty(MyStack *p) {
 Data topo(MyStack *p) {
   return p->stack[p->n_elementos - 1];
 }
-
-// o que faz?
-//void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type){
-//    Data d;
-//    switch (d.tipo) {
-//        case CHAR: d.tipo = CHAR; d.CHAR = value;
-//    }
-//    PUSH(p, d);
-//}
 
 void PRINT_STACK(MyStack *p) {
     for (int i=0; i < p->n_elementos; i++){
@@ -55,7 +45,6 @@ void PRINT_STACK(MyStack *p) {
     printf("\n");
 }
 
-// operações na stack
 Data POP(MyStack *p) {
   p->n_elementos--;
   return p->stack[p->n_elementos];
@@ -70,8 +59,6 @@ void PUSH(MyStack *p, Data elem) {
   p->n_elementos++;
 }
 
-
-// macros
 
 #define MyStack_OPERATION(_tipo, _name)         \
   void PUSH_##_name(MyStack *s, _tipo val) {    \
