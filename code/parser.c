@@ -1,6 +1,3 @@
-/**
- * @file Este ficheiro contém a função parser
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,9 +18,9 @@ double GET_AS_DOUBLE(Data d){
 }
 long GET_AS_LONG(Data d){
     switch (d.tipo) {
-        case CHAR: return d.LONG;
+        case CHAR: return d.CHAR;
         case LONG: return d.LONG;
-        case DOUBLE: return d.LONG;
+        case DOUBLE: return d.DOUBLE;
         default: assert(0 && "inconvertivel");
     }
 }
@@ -31,7 +28,7 @@ char GET_AS_CHAR(Data d){
     switch (d.tipo) {
         case CHAR: return d.CHAR;
         case LONG: return d.LONG;
-        case DOUBLE: return d.CHAR;
+        case DOUBLE: return d.DOUBLE;
         default: assert(0 && "inconvertivel");
     }
 }
@@ -143,44 +140,42 @@ void parser (char *line){
 
         } else if (strcmp(token, "_") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
-            PUSH_DOUBLE(p, dx);
-            PUSH_DOUBLE(p, dx);
+            PUSH(p, x);
+            PUSH(p, x);
 
         } else if (strcmp(token, ";") == 0){
             p->n_elementos--;
             
         } else if (strcmp(token, "\\") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
-            PUSH_DOUBLE(p, dx);
-            PUSH_DOUBLE(p, dy);
+            PUSH(p, x);
+            PUSH(p, y);
 
         } else if (strcmp(token, "@") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
             Data z = POP(p);
-            double dz = GET_AS_DOUBLE(z);
-            PUSH_DOUBLE(p, dy);
-            PUSH_DOUBLE(p, dx);
-            PUSH_DOUBLE(p, dz);
+            PUSH(p, y);
+            PUSH(p, x);
+            PUSH(p, z);
+           
 
         } else if (strcmp(token, "$") == 0){
-    int posicaoDoN = GET_AS_LONG(POP(p));
+            int posicaoDoN = GET_AS_LONG(POP(p));
             int idx = p->n_elementos - posicaoDoN;
             
             Data valor  = p->stack[idx];
             PUSH(p, valor);
-            }
+            
+            printf("%d", idx);
 //            7 2 3 2 $ -> 7237
+//            2 1 0
+            
         } else if (strcmp(token, "l") == 0){
-            char readline[1000];
-            char *x = strdup(fgets(readline, 1000, stdin));
-            PUSH_STRING(p, x);
+            char readline[SIZE];
+            char *l = strdup(fgets(readline, SIZE, stdin));
+            PUSH_STRING(p, l);
             
         } else if (strcmp(token, "i") == 0){
             if (has_type(topo(p), STRING)) {
@@ -190,7 +185,7 @@ void parser (char *line){
                 long lx = GET_AS_LONG(POP(p));
                 PUSH_LONG(p, lx);
             }
-            
+       
         } else if (strcmp(token, "f") == 0){
             if (has_type(topo(p), STRING)) {
                 char *sx = POP_STRING(p);
