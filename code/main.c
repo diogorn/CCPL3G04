@@ -1,6 +1,3 @@
-/**
- * @file Este ficheiro contém a função principal do programa
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -10,10 +7,6 @@
 
 #define SIZE 10240
 
-/**
- * @brief Função principal do programa.
- * @return Devolve o valor 0 
- */
 int main (){
     char line[SIZE];
 //    assert(fgets(line, SIZE, stdin) != NULL);

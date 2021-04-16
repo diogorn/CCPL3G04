@@ -55,27 +55,55 @@ void parser (char *line){
 // operações
         } else if (strcmp(token, "+") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
+//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
+//            double dy =  GET_AS_DOUBLE(y);
+//
+//            PUSH_DOUBLE(p, dx+dy);
             
-            PUSH_DOUBLE(p, dx+dy);
+            if (has_type(x, LONG) & has_type(y, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long ly = GET_AS_LONG(y);
+                PUSH_LONG(p, ly+lx);
+            } else {
+               double dx = GET_AS_DOUBLE(x);
+               double dy =  GET_AS_DOUBLE(y);
+                PUSH_DOUBLE(p, dy+dx);
+            }
+          
 
         } else if (strcmp(token, "-") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
+//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
+//            double dy =  GET_AS_DOUBLE(y);
             
-            PUSH_DOUBLE(p, dy-dx);
-
+//            PUSH_DOUBLE(p, dy-dx);
+            if (has_type(x, LONG) & has_type(y, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long ly = GET_AS_LONG(y);
+                PUSH_LONG(p, ly-lx);
+            } else {
+               double dx = GET_AS_DOUBLE(x);
+               double dy =  GET_AS_DOUBLE(y);
+                PUSH_DOUBLE(p, dy-dx);
+            }
         } else if (strcmp(token, "*") == 0){
             Data x = POP(p);
-            double dx = GET_AS_DOUBLE(x);
+//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-            double dy =  GET_AS_DOUBLE(y);
+//            double dy =  GET_AS_DOUBLE(y);
             
-            PUSH_DOUBLE(p, dx*dy);
+//            PUSH_DOUBLE(p, dx*dy);
+            if (has_type(x, LONG) & has_type(y, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long ly = GET_AS_LONG(y);
+                PUSH_LONG(p, ly*lx);
+            } else {
+               double dx = GET_AS_DOUBLE(x);
+               double dy =  GET_AS_DOUBLE(y);
+                PUSH_DOUBLE(p, dy*dx);
+            }
             
         } else if (strcmp(token, "/") == 0){
             Data x = POP(p);
@@ -193,8 +221,8 @@ void parser (char *line){
            
 
         } else if (strcmp(token, "$") == 0){
-            int posicaoDoN = GET_AS_LONG(POP(p));
-            int idx = p->n_elementos-1 - posicaoDoN;
+            long posicaoDoN = GET_AS_LONG(POP(p));
+            long idx = p->n_elementos-1 - posicaoDoN;
             
             Data valor  = p->stack[idx];
             PUSH(p, valor);
@@ -232,6 +260,7 @@ void parser (char *line){
     PRINT_STACK(p);
 }
 
+
 // 218 _ _ 10 % \ @ 100 / _ 100 * @ _ @ - 10 / \ ; @
 // 218 218 218
 // 218 218 8
@@ -243,9 +272,12 @@ void parser (char *line){
 // 8 2 200 218
 // 8 2 200 218 218
 // 8 2 218 218 200
-// 8 2 218 18 **** erro aqui
+// 8 2 218 18
 // 8 2 218 1
 // 8 2 1 218
 // 8 2 1
 // 2
+
+
+
 
