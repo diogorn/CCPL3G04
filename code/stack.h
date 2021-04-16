@@ -3,18 +3,11 @@
 
 #include <stdio.h>
 
-#define SIZE 10240
-// atribui um numero (escolhi o de bytes) para facil identificação do tipo de dado que é
 typedef enum tipo{
-//    o numero de posições corresponde ao numero de bytes que cada tipo de dados ocupa
     LONG=1, DOUBLE=2, CHAR=4, STRING=8
-
 }TYPE;
 
-#define INTEGER  (LONG | CHAR)
-#define NUMBER   (INTEGER | DOUBLE)
 
-// vai ajudar a definir o tipo de dados com a função vai trabalhar
 typedef struct TipoDados{
     TYPE tipo;
     long LONG;
@@ -22,11 +15,10 @@ typedef struct TipoDados{
     char CHAR;
     char *STRING;
 }Data;
-// --------------------------------------
+
 typedef struct Pilha{
     Data *stack;
     int size;
-//    int topo;
     int n_elementos;
 }MyStack;
 
@@ -39,7 +31,7 @@ void PRINT_STACK(MyStack *p);
 
 Data POP(MyStack *p);
 void PUSH(MyStack *p, Data elem);
-void PUSH_DOUBLE_AS_TYPE(MyStack *p, double value, TYPE type);
+
 
 
 // macros 
