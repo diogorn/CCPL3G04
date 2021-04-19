@@ -266,6 +266,69 @@ void parser (char *line){
             Data x = POP(p);
             char cx = GET_AS_CHAR(x);
             PUSH_CHAR(p, cx);
+        
+         } else if (strcmp(token, "=")==0) {
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dx == dy) {
+                PUSH_DOUBLE(p, 1);
+            }
+        } else if (strcmp(token, "<")==0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy < dx) {
+                PUSH_LONG(p, 1);
+            } else {
+                PUSH_LONG(p, 0);
+            }
+        } else if (strcmp(token, ">")==0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy > dx) {
+                PUSH_LONG(p, 1);
+            } else {
+                PUSH_LONG(p, 0);
+            }
+        } else if (strcmp(token, "!") == 0){
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            if (lx == 0) {
+                PUSH_LONG (p, 1);
+            } else {
+                PUSH_LONG (p, 0);
+            }
+        } else if (strcmp(token, "e&") == 0){
+            
+        } else if (strcmp(token, "e|") == 0){
+            
+        } else if (strcmp(token, "e<") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy<dx) {
+                PUSH_DOUBLE(p, dy);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, "e>") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy>dx) {
+                PUSH_DOUBLE(p, dy);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, "?") == 0){
+            
         }
 
     }
