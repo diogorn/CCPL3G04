@@ -304,10 +304,26 @@ void parser (char *line){
                 PUSH_LONG (p, 0);
             }
         } else if (strcmp(token, "e&") == 0){
-            
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy == 0) {
+                PUSH_DOUBLE(p, 0);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
         } else if (strcmp(token, "e|") == 0){
-            
-        } else if (strcmp(token, "e<") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy != 0) {
+                PUSH_DOUBLE(p, 1);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+       } else if (strcmp(token, "e<") == 0){
             Data x = POP(p);
             double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
@@ -328,8 +344,33 @@ void parser (char *line){
                 PUSH_DOUBLE(p, dx);
             }
         } else if (strcmp(token, "?") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            Data z = POP(p);
+            double dz = GET_AS_DOUBLE(z);
+            if (dz != 0){
+                PUSH_DOUBLE(p, dy);
+            }else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, ":")){
+//            110 :T T
+            Data x = POP(p);
+            if (has_type(x, LONG)) {
+                long lx = GET_AS_LONG(x);
+                long *lt = lx;
+            } else if ( has_type(x, DOUBLE)){
+               double dx = GET_AS_DOUBLE(x);
+                PUSH_DOUBLE(p, dx-1);
+            } else if (has_type(x, CHAR)){
+                char cx = GET_AS_CHAR(x);
+                PUSH_CHAR(p, cx-1);
+            }
             
-        }
+            
+        } 
 
     }
     PRINT_STACK(p);
