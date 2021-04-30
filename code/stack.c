@@ -1,12 +1,27 @@
+/**
+ * @file Este ficheiro contém todas as funções associadas à stack
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
 #include "stack.h"
 
+/**
+ * @brief A função has_type indica o tipo do elemento e o número de bytes utilizados
+ * 
+ * @param elem Elemento de um determinado tipo Data
+ * @param bytes Número de bytes utilizados pelo elemento
+ * @return Retorna o tipo do elemento analisado e os bytes respetivos 
+ */
 int has_type (Data elem, int bytes){
     return (elem.tipo & bytes);
 }
+
+/**
+ * @brief Função que retribui informações sobre a estrutura Stack
+ * @return p apontador para a MyStack* 
+ */
 MyStack *inicia_MyStack(){
     MyStack *p = (MyStack *) calloc(1, sizeof(MyStack));
     p->size = 100;
@@ -14,14 +29,28 @@ MyStack *inicia_MyStack(){
     return p;
 }
 
+/**
+ * @brief Verifica se a stack está vazia ou não
+ * @param p apontador para a stack
+ * @return int Retorna o valor do número de elementos da stack
+ */
 int is_empty(MyStack *p) {
   return p->n_elementos == 0;
 }
 
+/**
+ * @brief Retira o elemento que está no topo da stack
+ * @param p Apontador para a stack
+ * @return Retorna a stack sem o elemento do topo
+ */
 Data topo(MyStack *p) {
   return p->stack[p->n_elementos - 1];
 }
 
+/**
+ * @brief Função que imprime a stack 
+ * @param p Apontador para a stack
+ */
 void PRINT_STACK(MyStack *p) {
     for (int i=0; i < p->n_elementos; i++){
         Data elem = p->stack[i];
@@ -45,11 +74,21 @@ void PRINT_STACK(MyStack *p) {
     printf("\n");
 }
 
+/**
+ * @brief Responsável por desempilhar elementos numa stack
+ * @param p Apontador para a stack
+ * @return Data Retorna a stack alterada 
+ */
 Data POP(MyStack *p) {
   p->n_elementos--;
   return p->stack[p->n_elementos];
 }
 
+/**
+ * @brief Responsável por empilhar elementos na stack
+ * @param p Apomtador para a stack
+ * @param elem Um dado elemento de um dado tipo
+ */
 void PUSH(MyStack *p, Data elem) {
   if(p->size == p->n_elementos) {
     p->size += 100;
@@ -59,6 +98,40 @@ void PUSH(MyStack *p, Data elem) {
   p->n_elementos++;
 }
 
+
+//funcao para dar valor às variáveis
+// void edita_array(MyStack *p, char letra){
+//     long posicao = letra;
+//     Data x = p->array[posicao-65];
+//     Data y = POP(p);
+//     if(has_type(y, LONG)){
+//         x.LONG=y.LONG;
+//         PUSH(p, x);
+//     }else if (has_type(y, DOUBLE)){
+//         x.LONG = y.DOUBLE;
+//         PUSH(p, x);
+//     }else if (has_type(y, CHAR)){
+//         x.LONG = y.CHAR;
+//         PUSH(p, x);
+//     }
+// }
+// 
+// void popula_stack(MyStack *p){
+//     p->array[0].LONG=10;
+//     p->array[1].LONG=11;
+//     p->array[2].LONG=12;
+//     p->array[3].LONG=13;
+//     p->array[4].LONG=14;
+//     p->array[5].LONG=15;
+//     p->array[13].CHAR='\n';
+//     p->array[18].CHAR=' ';
+//     p->array[23].LONG=0;
+//     p->array[24].LONG=1;
+//     p->array[25].LONG=2;
+// 
+// 
+// }
+ 
 
 #define MyStack_OPERATION(_tipo, _name)         \
   void PUSH_##_name(MyStack *s, _tipo val) {    \

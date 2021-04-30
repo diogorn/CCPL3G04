@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#define SIZE 10240
+
 typedef enum tipo{
     LONG=1, DOUBLE=2, CHAR=4, STRING=8
 }TYPE;
@@ -32,6 +34,9 @@ void PRINT_STACK(MyStack *p);
 Data POP(MyStack *p);
 void PUSH(MyStack *p, Data elem);
 
+//funcao para dar valor às variáveis
+// void edita_array(MyStack *p, char letra);
+// void popula_stack(MyStack *p);
 
 
 // macros 

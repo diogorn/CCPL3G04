@@ -1,3 +1,6 @@
+/**
+ * @file Este ficheiro contém a função parser
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +10,11 @@
 #include "parser.h"
 #include "stack.h"
 
+/**
+ * @brief Esta função converte outros tipos diferentes de double para double
+ * @param d Elemento d de determinado tipo que será convertido para double
+ * @return double Retorna valores em double
+ */
 double GET_AS_DOUBLE(Data d){
     switch (d.tipo) {
         case CHAR: return d.CHAR;
@@ -15,6 +23,12 @@ double GET_AS_DOUBLE(Data d){
         default: assert(0 && "inconvertivel");
     }
 }
+
+/**
+ * @brief Esta função converte outros tipos diferentes de long para long
+ * @param d Elemento d de determinado tipo que será convertido para long
+ * @return long Retorna valores em long
+ */
 long GET_AS_LONG(Data d){
     switch (d.tipo) {
         case CHAR: return d.CHAR;
@@ -23,6 +37,12 @@ long GET_AS_LONG(Data d){
         default: assert(0 && "inconvertivel");
     }
 }
+
+/**
+ * @brief Esta função converte outros tipos diferentes de char para char
+ * @param d Elemento d de determinado tipo que será convertido para char
+ * @return Retorna valores em char
+ */
 char GET_AS_CHAR(Data d){
     switch (d.tipo) {
         case CHAR: return d.CHAR;
@@ -32,6 +52,10 @@ char GET_AS_CHAR(Data d){
     }
 }
 
+/**
+ * @brief A função parser faz o parse de uma dada linha
+ * @param line A linha que foi lida e da qual se vai fazer o parser
+ */
 void parser (char *line){
     
     MyStack *p = inicia_MyStack ();
@@ -242,7 +266,101 @@ void parser (char *line){
             Data x = POP(p);
             char cx = GET_AS_CHAR(x);
             PUSH_CHAR(p, cx);
-        }
+        
+         } else if (strcmp(token, "=")==0) {
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dx == dy) {
+                PUSH_DOUBLE(p, 1);
+            }
+        } else if (strcmp(token, "<")==0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy < dx) {
+                PUSH_LONG(p, 1);
+            } else {
+                PUSH_LONG(p, 0);
+            }
+        } else if (strcmp(token, ">")==0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy > dx) {
+                PUSH_LONG(p, 1);
+            } else {
+                PUSH_LONG(p, 0);
+            }
+        } else if (strcmp(token, "!") == 0){
+            Data x = POP(p);
+            long lx = GET_AS_LONG(x);
+            if (lx == 0) {
+                PUSH_LONG (p, 1);
+            } else {
+                PUSH_LONG (p, 0);
+            }
+        } else if (strcmp(token, "e&") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy == 0) {
+                PUSH_DOUBLE(p, 0);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, "e|") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy != 0) {
+                PUSH_DOUBLE(p, 1);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+       } else if (strcmp(token, "e<") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy<dx) {
+                PUSH_DOUBLE(p, dy);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, "e>") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            if (dy>dx) {
+                PUSH_DOUBLE(p, dy);
+            } else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, "?") == 0){
+            Data x = POP(p);
+            double dx = GET_AS_DOUBLE(x);
+            Data y = POP(p);
+            double dy = GET_AS_DOUBLE(y);
+            Data z = POP(p);
+            double dz = GET_AS_DOUBLE(z);
+            if (dz != 0){
+                PUSH_DOUBLE(p, dy);
+            }else {
+                PUSH_DOUBLE(p, dx);
+            }
+        } else if (strcmp(token, ":")){
+//            110 :T T
+          
+            
+            
+        } 
 
     }
     PRINT_STACK(p);
