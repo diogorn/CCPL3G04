@@ -35,8 +35,8 @@ Data POP(MyStack *p);
 void PUSH(MyStack *p, Data elem);
 
 //funcao para dar valor às variáveis
-void edita_array(MyStack *p, char letra);
-void popula_stack(MyStack *p);
+// void edita_array(MyStack *p, char letra);
+// void popula_stack(MyStack *p);
 
 
 // macros 
