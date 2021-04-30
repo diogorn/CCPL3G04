@@ -354,21 +354,112 @@ void parser (char *line){
             }else {
                 PUSH_DOUBLE(p, dx);
             }
-            
         } else if (strcmp(token, "A") == 0){
             da_valor(p, 'A');
         } else if (strcmp(token, "B") == 0){
             da_valor(p, 'B');
         } else if (strcmp(token, "C") == 0){
             da_valor(p, 'C');
-            // fazer else if para o resto das letras
+        } else if (strcmp(token, "D") == 0){
+            da_valor(p, 'D');
+        } else if (strcmp(token, "E") == 0){
+            da_valor(p, 'E');
+        } else if (strcmp(token, "F") == 0){
+            da_valor(p, 'F');
+        } else if (strcmp(token, "G") == 0){
+            da_valor(p, 'G');
+        } else if (strcmp(token, "H") == 0){
+            da_valor(p, 'H');
+        } else if (strcmp(token, "I") == 0){
+            da_valor(p, 'I');
+        } else if (strcmp(token, "J") == 0){
+            da_valor(p, 'J');
+        } else if (strcmp(token, "K") == 0){
+            da_valor(p, 'K');
+        } else if (strcmp(token, "L") == 0){
+            da_valor(p, 'L');
+        } else if (strcmp(token, "M") == 0){
+            da_valor(p, 'M');
+        } else if (strcmp(token, "N") == 0){
+            da_valor(p, 'N');
+        } else if (strcmp(token, "O") == 0){
+            da_valor(p, 'O');
+        } else if (strcmp(token, "P") == 0){
+            da_valor(p, 'P');
+        } else if (strcmp(token, "Q") == 0){
+            da_valor(p, 'Q');
+        } else if (strcmp(token, "R") == 0){
+            da_valor(p, 'R');
+        } else if (strcmp(token, "S") == 0){
+            da_valor(p, 'S');
+        } else if (strcmp(token, "T") == 0){
+            da_valor(p, 'T');
+        } else if (strcmp(token, "U") == 0){
+            da_valor(p, 'U');
+        } else if (strcmp(token, "V") == 0){
+            da_valor(p, 'V');
+        } else if (strcmp(token, "W") == 0){
+            da_valor(p, 'W');
+        } else if (strcmp(token, "X") == 0){
+            da_valor(p, 'X');
+        } else if (strcmp(token, "Y") == 0){
+            da_valor(p, 'Y');
+        } else if (strcmp(token, "Z") == 0){
+            da_valor(p, 'Z');
         } else if (strcmp(token, ":A") == 0){
             conteudo(p, 'A');
         } else if (strcmp(token, ":B") == 0){
             conteudo(p, 'B');
         } else if (strcmp(token, ":C") == 0){
             conteudo(p, 'C');
-            // fazer else if para o resto das letras
+        } else if (strcmp(token, ":D") == 0){
+            conteudo(p, 'D');
+        } else if (strcmp(token, ":E") == 0){
+            conteudo(p, 'E');
+        } else if (strcmp(token, ":F") == 0){
+            conteudo(p, 'F');
+        } else if (strcmp(token, ":G") == 0){
+            conteudo(p, 'G');
+        } else if (strcmp(token, ":H") == 0){
+            conteudo(p, 'H');
+        } else if (strcmp(token, ":I") == 0){
+            conteudo(p, 'I');
+        } else if (strcmp(token, ":J") == 0){
+            conteudo(p, 'J');
+        } else if (strcmp(token, ":K") == 0){
+            conteudo(p, 'K');
+        } else if (strcmp(token, ":L") == 0){
+            conteudo(p, 'L');
+        } else if (strcmp(token, ":M") == 0){
+            conteudo(p, 'M');
+        } else if (strcmp(token, ":N") == 0){
+            conteudo(p, 'N');
+        } else if (strcmp(token, ":O") == 0){
+            conteudo(p, 'O');
+        } else if (strcmp(token, ":P") == 0){
+            conteudo(p, 'P');
+        } else if (strcmp(token, ":Q") == 0){
+            conteudo(p, 'Q');
+        } else if (strcmp(token, ":R") == 0){
+            conteudo(p, 'R');
+        } else if (strcmp(token, ":S") == 0){
+            conteudo(p, 'S');
+        } else if (strcmp(token, ":T") == 0){
+            conteudo(p, 'T');
+        } else if (strcmp(token, ":U") == 0){
+            conteudo(p, 'U');
+        } else if (strcmp(token, ":U") == 0){
+            conteudo(p, 'U');
+        } else if (strcmp(token, ":V") == 0){
+            conteudo(p, 'V');
+        } else if (strcmp(token, ":W") == 0){
+            conteudo(p, 'W');
+        } else if (strcmp(token, ":X") == 0){
+            conteudo(p, 'X');
+        } else if (strcmp(token, ":Y") == 0){
+            conteudo(p, 'Y');
+        } else if (strcmp(token, ":Z") == 0){
+            conteudo(p, 'Z');
         } 
     }
     PRINT_STACK(p);
