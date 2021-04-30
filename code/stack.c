@@ -100,37 +100,37 @@ void PUSH(MyStack *p, Data elem) {
 
 
 //funcao para dar valor às variáveis
-void edita_array(MyStack *p, char letra){
-    long posicao = letra;
-    Data x = p->array[posicao-65];
-    Data y = POP(p);
-    if(has_type(y, LONG)){
-        x.LONG=y.LONG;
-        PUSH(p, x);
-    }else if (has_type(y, DOUBLE)){
-        x.LONG = y.DOUBLE;
-        PUSH(p, x);
-    }else if (has_type(y, CHAR)){
-        x.LONG = y.CHAR;
-        PUSH(p, x);
-    }
-}
-
-void popula_stack(MyStack *p){
-    p->array[0].LONG=10;
-    p->array[1].LONG=11;
-    p->array[2].LONG=12;
-    p->array[3].LONG=13;
-    p->array[4].LONG=14;
-    p->array[5].LONG=15;
-    p->array[13].CHAR='\n';
-    p->array[18].CHAR=' ';
-    p->array[23].LONG=0;
-    p->array[24].LONG=1;
-    p->array[25].LONG=2;
-
-
-}
+// void edita_array(MyStack *p, char letra){
+//     long posicao = letra;
+//     Data x = p->array[posicao-65];
+//     Data y = POP(p);
+//     if(has_type(y, LONG)){
+//         x.LONG=y.LONG;
+//         PUSH(p, x);
+//     }else if (has_type(y, DOUBLE)){
+//         x.LONG = y.DOUBLE;
+//         PUSH(p, x);
+//     }else if (has_type(y, CHAR)){
+//         x.LONG = y.CHAR;
+//         PUSH(p, x);
+//     }
+// }
+// 
+// void popula_stack(MyStack *p){
+//     p->array[0].LONG=10;
+//     p->array[1].LONG=11;
+//     p->array[2].LONG=12;
+//     p->array[3].LONG=13;
+//     p->array[4].LONG=14;
+//     p->array[5].LONG=15;
+//     p->array[13].CHAR='\n';
+//     p->array[18].CHAR=' ';
+//     p->array[23].LONG=0;
+//     p->array[24].LONG=1;
+//     p->array[25].LONG=2;
+// 
+// 
+// }
  
 
 #define MyStack_OPERATION(_tipo, _name)         \
