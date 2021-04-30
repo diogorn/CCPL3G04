@@ -357,17 +357,7 @@ void parser (char *line){
             }
         } else if (strcmp(token, ":")){
 //            110 :T T
-            Data x = POP(p);
-            if (has_type(x, LONG)) {
-                long lx = GET_AS_LONG(x);
-                long *lt = lx;
-            } else if ( has_type(x, DOUBLE)){
-               double dx = GET_AS_DOUBLE(x);
-                PUSH_DOUBLE(p, dx-1);
-            } else if (has_type(x, CHAR)){
-                char cx = GET_AS_CHAR(x);
-                PUSH_CHAR(p, cx-1);
-            }
+          
             
             
         } 
