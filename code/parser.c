@@ -7,38 +7,10 @@
 #include "parser.h"
 #include "stack.h"
 
-
-
-// conversores
-//double GET_AS_DOUBLE(Data d){
-//    switch (d.tipo) {
-//        case CHAR: return d.CHAR;
-//        case LONG: return d.LONG;
-//        case DOUBLE: return d.DOUBLE;
-//        default: assert(0 && "inconvertivel");
-//    }
-//}
-//long GET_AS_LONG(Data d){
-//    switch (d.tipo) {
-//        case CHAR: return d.CHAR;
-//        case LONG: return d.LONG;
-//        case DOUBLE: return d.DOUBLE;
-//        default: assert(0 && "inconvertivel");
-//    }
-//}
-//char GET_AS_CHAR(Data d){
-//    switch (d.tipo) {
-//        case CHAR: return d.CHAR;
-//        case LONG: return d.LONG;
-//        case DOUBLE: return d.DOUBLE;
-//        default: assert(0 && "inconvertivel");
-//    }
-//}
-
 void parser (char *line){
     
     MyStack *p = inicia_MyStack ();
-    variaveis(p);
+    variaveis_pre_definidas(p);
     
     char *delimita = " \t\n";
     
@@ -56,16 +28,10 @@ void parser (char *line){
                
         } else if(strlen(sobra2) == 0){
                     PUSH_DOUBLE(p, val_d);
-    
-// operações
+//            operações stacl -- Guiao 1
         } else if (strcmp(token, "+") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-//
-//            PUSH_DOUBLE(p, dx+dy);
-
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
@@ -75,14 +41,9 @@ void parser (char *line){
                double dy =  GET_AS_DOUBLE(y);
                 PUSH_DOUBLE(p, dy+dx);
             }
-          
         } else if (strcmp(token, "-") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-            
-//            PUSH_DOUBLE(p, dy-dx);
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
@@ -94,11 +55,7 @@ void parser (char *line){
             }
         } else if (strcmp(token, "*") == 0){
             Data x = POP(p);
-//            double dx = GET_AS_DOUBLE(x);
             Data y = POP(p);
-//            double dy =  GET_AS_DOUBLE(y);
-            
-//            PUSH_DOUBLE(p, dx*dy);
             if (has_type(x, LONG) & has_type(y, LONG)) {
                 long lx = GET_AS_LONG(x);
                 long ly = GET_AS_LONG(y);
@@ -108,7 +65,6 @@ void parser (char *line){
                double dy =  GET_AS_DOUBLE(y);
                 PUSH_DOUBLE(p, dy*dx);
             }
-            
         } else if (strcmp(token, "/") == 0){
             Data x = POP(p);
             Data y = POP(p);
@@ -121,8 +77,6 @@ void parser (char *line){
                double dy =  GET_AS_DOUBLE(y);
                 PUSH_DOUBLE(p, dy/dx);
             }
-
-            
         } else if (strcmp(token, "#") == 0){
             Data x = POP(p);
             Data y = POP(p);
@@ -135,47 +89,36 @@ void parser (char *line){
                double dy =  GET_AS_DOUBLE(y);
                 PUSH_DOUBLE(p, pow(dy, dx));
             }
-            //  bitwise ou o módulo da divisão nunca vão ser testados com doubles.
         } else if (strcmp(token, "&") == 0){
             Data x = POP(p);
             long dx = GET_AS_LONG(x);
             Data y = POP(p);
             long dy =  GET_AS_LONG(y);;
             PUSH_LONG(p, dx&dy);
-            
         } else if (strcmp(token, "|") == 0){
             Data x = POP(p);
             long lx = GET_AS_LONG(x);
             Data y = POP(p);
             long ly =  GET_AS_LONG(y);
-            
             PUSH_LONG(p, lx|ly);
-            
         } else if (strcmp(token, "^") == 0){
             Data x = POP(p);
             long lx = GET_AS_LONG(x);
             Data y = POP(p);
             long ly =  GET_AS_LONG(y);
-            
             PUSH_LONG(p, lx^ly);
-            
         } else if (strcmp(token, "~") == 0){
             Data x = POP(p);
             long lx = GET_AS_LONG(x);
-            
             PUSH_DOUBLE(p, ~ lx);
-            
         } else if (strcmp(token, "%")==0){
             Data x = POP(p);
             long lx = GET_AS_LONG(x);
             Data y = POP(p);
             long ly =  GET_AS_LONG(y);
-            
             PUSH_LONG(p,(ly%lx));
-            
         } else if (strcmp(token, "(")==0){
             Data x = POP(p);
-            
             if (has_type(x, LONG)) {
                 long lx = GET_AS_LONG(x);
                 PUSH_LONG(p, lx-1);
@@ -186,7 +129,6 @@ void parser (char *line){
                 char cx = GET_AS_CHAR(x);
                 PUSH_CHAR(p, cx-1);
             }
-            
         } else if (strcmp(token, ")")==0){
             Data x = POP(p);
             if (has_type(x, LONG)) {
@@ -199,22 +141,18 @@ void parser (char *line){
                 char cx = GET_AS_CHAR(x);
                 PUSH_CHAR(p, cx+1);
             }
-
-        
+//            manipulação da stack -- GUIAO 2
         } else if (strcmp(token, "_") == 0){
             Data x = POP(p);
             PUSH(p, x);
             PUSH(p, x);
-
         } else if (strcmp(token, ";") == 0){
             p->n_elementos--;
-            
         } else if (strcmp(token, "\\") == 0){
             Data x = POP(p);
             Data y = POP(p);
             PUSH(p, x);
             PUSH(p, y);
-
         } else if (strcmp(token, "@") == 0){
             Data x = POP(p);
             Data y = POP(p);
@@ -222,24 +160,35 @@ void parser (char *line){
             PUSH(p, y);
             PUSH(p, x);
             PUSH(p, z);
-           
-
         } else if (strcmp(token, "$") == 0){
             long posicaoDoN = GET_AS_LONG(POP(p));
             long idx = p->n_elementos-1 - posicaoDoN;
-            
             Data valor  = p->stack[idx];
             PUSH(p, valor);
-            
+//            le linhas e tipos
         } else if (strcmp(token, "l") == 0){
             char readline[SIZE];
             char *l = strdup(fgets(readline, SIZE, stdin));
             PUSH_STRING(p, l);
-            
         } else if (strcmp(token, "p") == 0){
-            Data x = POP(p);
-            PUSH(p, x);
-            PRINT_TOP(x);
+            Data x = topo(p);
+            TYPE wichType = x.tipo;
+            
+                switch(wichType){
+                    case LONG:
+                        printf("%ld", x.LONG);
+                        break;
+                    case DOUBLE:
+                        printf("%g", x.DOUBLE);
+                        break;
+                    case CHAR:
+                        printf("%c", x.CHAR);
+                        break;
+                    case STRING:
+                        printf("%s", x.STRING);
+                        break;
+                }
+            printf("\n");
             
         } else if (strcmp(token, "i") == 0){
             if (has_type(topo(p), STRING)) {
@@ -249,7 +198,6 @@ void parser (char *line){
                 long lx = GET_AS_LONG(POP(p));
                 PUSH_LONG(p, lx);
             }
-       
         } else if (strcmp(token, "f") == 0){
             if (has_type(topo(p), STRING)) {
                 char *sx = POP_STRING(p);
@@ -258,13 +206,11 @@ void parser (char *line){
                 double dx = GET_AS_DOUBLE(POP(p));
                 PUSH_DOUBLE(p, dx);
             }
-            
         } else if (strcmp(token, "c") == 0){
             Data x = POP(p);
             char cx = GET_AS_CHAR(x);
             PUSH_CHAR(p, cx);
-            
-        //PERGUNTAR 0 E 1 / TRUE FALSE
+//            logica -- GUIAO 3
         } else if (strcmp(token, "=")==0) {
             Data x = POP(p);
             double dx = GET_AS_DOUBLE(x);
@@ -272,6 +218,8 @@ void parser (char *line){
             double dy = GET_AS_DOUBLE(y);
             if (dx == dy) {
                 PUSH_DOUBLE(p, 1);
+            } else {
+                PUSH_DOUBLE(p, 0);
             }
         } else if (strcmp(token, "<")==0){
             Data x = POP(p);
@@ -317,7 +265,7 @@ void parser (char *line){
             Data y = POP(p);
             double dy = GET_AS_DOUBLE(y);
             if (dy != 0) {
-                PUSH_DOUBLE(p, 1);
+                PUSH_DOUBLE(p, dy);
             } else {
                 PUSH_DOUBLE(p, dx);
             }
@@ -341,7 +289,6 @@ void parser (char *line){
             } else {
                 PUSH_DOUBLE(p, dx);
             }
-//             1 2 1 1 = ?
         } else if (strcmp(token, "?") == 0){
             Data x = POP(p);
             double dx = GET_AS_DOUBLE(x);
@@ -354,113 +301,115 @@ void parser (char *line){
             }else {
                 PUSH_DOUBLE(p, dx);
             }
+//            Letras
         } else if (strcmp(token, "A") == 0){
-            da_valor(p, 'A');
+            variaveis(p, 'A');
         } else if (strcmp(token, "B") == 0){
-            da_valor(p, 'B');
+            variaveis(p, 'B');
         } else if (strcmp(token, "C") == 0){
-            da_valor(p, 'C');
+            variaveis(p, 'C');
         } else if (strcmp(token, "D") == 0){
-            da_valor(p, 'D');
+            variaveis(p, 'D');
         } else if (strcmp(token, "E") == 0){
-            da_valor(p, 'E');
+            variaveis(p, 'E');
         } else if (strcmp(token, "F") == 0){
-            da_valor(p, 'F');
+            variaveis(p, 'F');
         } else if (strcmp(token, "G") == 0){
-            da_valor(p, 'G');
+            variaveis(p, 'G');
         } else if (strcmp(token, "H") == 0){
-            da_valor(p, 'H');
+            variaveis(p, 'H');
         } else if (strcmp(token, "I") == 0){
-            da_valor(p, 'I');
+            variaveis(p, 'I');
         } else if (strcmp(token, "J") == 0){
-            da_valor(p, 'J');
+            variaveis(p, 'J');
         } else if (strcmp(token, "K") == 0){
-            da_valor(p, 'K');
+            variaveis(p, 'K');
         } else if (strcmp(token, "L") == 0){
-            da_valor(p, 'L');
+            variaveis(p, 'L');
         } else if (strcmp(token, "M") == 0){
-            da_valor(p, 'M');
+            variaveis(p, 'M');
         } else if (strcmp(token, "N") == 0){
-            da_valor(p, 'N');
+            variaveis(p, 'N');
         } else if (strcmp(token, "O") == 0){
-            da_valor(p, 'O');
+            variaveis(p, 'O');
         } else if (strcmp(token, "P") == 0){
-            da_valor(p, 'P');
+            variaveis(p, 'P');
         } else if (strcmp(token, "Q") == 0){
-            da_valor(p, 'Q');
+            variaveis(p, 'Q');
         } else if (strcmp(token, "R") == 0){
-            da_valor(p, 'R');
+            variaveis(p, 'R');
         } else if (strcmp(token, "S") == 0){
-            da_valor(p, 'S');
+            variaveis(p, 'S');
         } else if (strcmp(token, "T") == 0){
-            da_valor(p, 'T');
+            variaveis(p, 'T');
         } else if (strcmp(token, "U") == 0){
-            da_valor(p, 'U');
+            variaveis(p, 'U');
         } else if (strcmp(token, "V") == 0){
-            da_valor(p, 'V');
+            variaveis(p, 'V');
         } else if (strcmp(token, "W") == 0){
-            da_valor(p, 'W');
+            variaveis(p, 'W');
         } else if (strcmp(token, "X") == 0){
-            da_valor(p, 'X');
+            variaveis(p, 'X');
         } else if (strcmp(token, "Y") == 0){
-            da_valor(p, 'Y');
+            variaveis(p, 'Y');
         } else if (strcmp(token, "Z") == 0){
-            da_valor(p, 'Z');
+            variaveis(p, 'Z');
+//            alteração dos valores das variavies
         } else if (strcmp(token, ":A") == 0){
-            conteudo(p, 'A');
+            add_valor(p, 'A');
         } else if (strcmp(token, ":B") == 0){
-            conteudo(p, 'B');
+            add_valor(p, 'B');
         } else if (strcmp(token, ":C") == 0){
-            conteudo(p, 'C');
+            add_valor(p, 'C');
         } else if (strcmp(token, ":D") == 0){
-            conteudo(p, 'D');
+            add_valor(p, 'D');
         } else if (strcmp(token, ":E") == 0){
-            conteudo(p, 'E');
+            add_valor(p, 'E');
         } else if (strcmp(token, ":F") == 0){
-            conteudo(p, 'F');
+            add_valor(p, 'F');
         } else if (strcmp(token, ":G") == 0){
-            conteudo(p, 'G');
+            add_valor(p, 'G');
         } else if (strcmp(token, ":H") == 0){
-            conteudo(p, 'H');
+            add_valor(p, 'H');
         } else if (strcmp(token, ":I") == 0){
-            conteudo(p, 'I');
+            add_valor(p, 'I');
         } else if (strcmp(token, ":J") == 0){
-            conteudo(p, 'J');
+            add_valor(p, 'J');
         } else if (strcmp(token, ":K") == 0){
-            conteudo(p, 'K');
+            add_valor(p, 'K');
         } else if (strcmp(token, ":L") == 0){
-            conteudo(p, 'L');
+            add_valor(p, 'L');
         } else if (strcmp(token, ":M") == 0){
-            conteudo(p, 'M');
+            add_valor(p, 'M');
         } else if (strcmp(token, ":N") == 0){
-            conteudo(p, 'N');
+            add_valor(p, 'N');
         } else if (strcmp(token, ":O") == 0){
-            conteudo(p, 'O');
+            add_valor(p, 'O');
         } else if (strcmp(token, ":P") == 0){
-            conteudo(p, 'P');
+            add_valor(p, 'P');
         } else if (strcmp(token, ":Q") == 0){
-            conteudo(p, 'Q');
+            add_valor(p, 'Q');
         } else if (strcmp(token, ":R") == 0){
-            conteudo(p, 'R');
+            add_valor(p, 'R');
         } else if (strcmp(token, ":S") == 0){
-            conteudo(p, 'S');
+            add_valor(p, 'S');
         } else if (strcmp(token, ":T") == 0){
-            conteudo(p, 'T');
+            add_valor(p, 'T');
         } else if (strcmp(token, ":U") == 0){
-            conteudo(p, 'U');
+            add_valor(p, 'U');
         } else if (strcmp(token, ":U") == 0){
-            conteudo(p, 'U');
+            add_valor(p, 'U');
         } else if (strcmp(token, ":V") == 0){
-            conteudo(p, 'V');
+            add_valor(p, 'V');
         } else if (strcmp(token, ":W") == 0){
-            conteudo(p, 'W');
+            add_valor(p, 'W');
         } else if (strcmp(token, ":X") == 0){
-            conteudo(p, 'X');
+            add_valor(p, 'X');
         } else if (strcmp(token, ":Y") == 0){
-            conteudo(p, 'Y');
+            add_valor(p, 'Y');
         } else if (strcmp(token, ":Z") == 0){
-            conteudo(p, 'Z');
-        } 
+            add_valor(p, 'Z');
+        }
     }
     PRINT_STACK(p);
 }
