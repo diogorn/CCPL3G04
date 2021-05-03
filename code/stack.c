@@ -97,12 +97,12 @@ Data make_long (long l){
     return x;
 }
 // double -> Data
-Data make_double (double d){
-    Data x;
-    x.tipo = DOUBLE;
-    x.DOUBLE = d;
-    return x;
-}
+// Data make_double (double d){
+//    Data x;
+//    x.tipo = DOUBLE;
+//    x.DOUBLE = d;
+//    return x;
+//}
 // char -> Data
 Data make_char (char c){
     Data x;
@@ -118,11 +118,11 @@ Data make_char (char c){
 void add_valor (MyStack *p, char letra)  {
     Data x = topo(p);
     if (has_type(x, LONG)) {
-        p->array[letra-'A'] = make_long(x.LONG);
+        p->array[letra-'A'] = x;
     } else if (has_type(x, DOUBLE)){
-        p->array[letra-'A'] = make_double(x.DOUBLE);
+        p->array[letra-'A'] = x;
     } else if (has_type(x, CHAR)){
-        p->array[letra-'A'] = make_char(x.CHAR);
+        p->array[letra-'A'] = x;
     }
 }
 
