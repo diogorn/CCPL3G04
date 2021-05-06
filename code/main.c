@@ -1,5 +1,5 @@
 /**
- * @file Este ficheiro contém a função parser
+ * @file Este ficheiro contém a função principal do programa
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,9 +11,8 @@
 #define SIZE 10240
 
 /**
- * \brief A função parser faz o parser de uma dada linha atribuida como argumento
- * 
- * @param line É a linha que foi lida e da qual se vai fazer o parser
+ * \brief Função principal do programa.
+ * @returns Devolve o valor 0 
  */
 int main (){
     char line[SIZE];
