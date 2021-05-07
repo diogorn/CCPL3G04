@@ -1,14 +1,13 @@
-/**
- * @file Ficheiro que contém as operações matemáticas, lógicas, conversores, expressões de input/output e da stack
- */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <assert.h>
+
+#include "stack.h"
 #include "math.h" // NOSSA math
 #include <math.h> // inclui a MATH definida no C
 
-/**
- * \brief Faz a soma de dois elementos 
- * 
- * @param p Apontador para a stack
- */
 void soma (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -23,11 +22,6 @@ void soma (MyStack *p){
     }
 }
 
-/**
- * \brief Faz a subtração de dois elementos
- * 
- * @param p Apontador para a stack
- */
 void subtracao (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -43,11 +37,6 @@ void subtracao (MyStack *p){
     }
 }
 
-/**
- * \brief Faz a multiplicação de dois elementos
- * 
- * @param p Apontador para a stack
- */
 void multiplicacao (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -63,11 +52,6 @@ void multiplicacao (MyStack *p){
     }
 }
 
-/**
- * \brief Divide um elemento pelo outro
- * 
- * @param p Apontador para a stack
- */
 void divisao (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -82,11 +66,6 @@ void divisao (MyStack *p){
     }
 }
 
-/**
- * \brief Eleva a variável dx à variável dy
- * 
- * @param p Apontador para a stack
- */
 void expoente (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -101,11 +80,6 @@ void expoente (MyStack *p){
     }
 }
 
-/**
- * \brief Faz o "E" lógico entre doia valores, em que o 0 é verdadeiro e o 1 é falso
- * 
- * @param p Apontador para a stack
- */
 void e_comercial (MyStack *p){
     Data x = POP(p);
     long dx = GET_AS_LONG(x);
@@ -113,11 +87,7 @@ void e_comercial (MyStack *p){
     long dy =  GET_AS_LONG(y);;
     PUSH_LONG(p, dx&dy);
 }
-/**
- * \brief Faz o "Ou" lógico entre doia valores, em que o 0 é verdadeiro e o 1 é falso
- * 
- * @param p Apontador para a stack
- */
+
 void ou_barra (MyStack *p){
     Data x = POP(p);
     long lx = GET_AS_LONG(x);
@@ -126,11 +96,6 @@ void ou_barra (MyStack *p){
     PUSH_LONG(p, lx|ly);
 }
 
-/**
- * \brief 
- * 
- * @param p Apontador para a stack
- */
 void my_xor (MyStack *p){
     Data x = POP(p);
     long lx = GET_AS_LONG(x);
@@ -139,22 +104,12 @@ void my_xor (MyStack *p){
     PUSH_LONG(p, lx^ly);
 }
 
-/**
- * \brief Faz a negação do elemento
- * 
- * @param p Apontador para a stack
- */
 void my_not (MyStack *p){
     Data x = POP(p);
     long lx = GET_AS_LONG(x);
     PUSH_DOUBLE(p, ~ lx);
 }
 
-/**
- * \brief Determina o resto da divisão entre dois elementos
- * 
- * @param p Apontador para a stack
- */
 void resto_div (MyStack *p){
     Data x = POP(p);
     long lx = GET_AS_LONG(x);
@@ -163,11 +118,6 @@ void resto_div (MyStack *p){
     PUSH_LONG(p,(ly%lx));
 }
 
-/**
- * \brief Decrementa 1 unidade ao elemento
- * 
- * @param p Apontador para a stack
- */
 void decrementar (MyStack *p){
     Data x = POP(p);  
     if (has_type(x, LONG)) {
@@ -182,11 +132,6 @@ void decrementar (MyStack *p){
     }
 }
 
-/**
- * \brief Incrementa 1 unidade ao elemento
- * 
- * @param p Apontador para a stack
- */
 void incrementar (MyStack *p){
     Data x = POP(p);
     if (has_type(x, LONG)) {
@@ -201,43 +146,24 @@ void incrementar (MyStack *p){
     }
 }
 
-/**
- *\brief Duplica o elemento, isto é, dá push duas vezes desse elemento na stack de forma que apareça em duplicado
- * 
- * @param p Apontador para a stack
- */
 void duplicar (MyStack *p){
     Data x = POP(p);
     PUSH(p, x);
     PUSH(p, x);
 }
 
-/**
- * \brief Dá pop do último elemento da stack
- * 
- * @param p Apontador para a stack
- */
 void my_pop (MyStack *p){
     p->n_elementos--;
 }
 
-/**
- * \brief Troca os dois elementos do topo da stack
- * 
- * @param p Apontador para a stack
- */
 void trocar_2 (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
     PUSH(p, x);
     PUSH(p, y);
+//    *(int*)0 = 0;
 }
 
-/**
- * \brief Roda os 3 elementos no topo da stack
- * 
- * @param p Apontador para a stack
- */
 void roda_3 (MyStack *p){
     Data x = POP(p);
     Data y = POP(p);
@@ -247,11 +173,6 @@ void roda_3 (MyStack *p){
     PUSH(p, z);
 }
 
-/**
- * \brief Copia n-ésimo elemento para o topo da stack0 é o topo da stack
- * 
- * @param p Apontador para a stack
- */
 void copia (MyStack *p){
     long posicaoDoN = GET_AS_LONG(POP(p));
     long idx = p->n_elementos-1 - posicaoDoN;
@@ -260,33 +181,33 @@ void copia (MyStack *p){
     PUSH(p, valor);
 }
 
-/**
- * \brief Lê uma linha
- * 
- * @param p Apontador para a stack
- */
 void ler_linha (MyStack *p){
-    har readline[SIZE];
+    char readline[SIZE];
     char *l = strdup(fgets(readline, SIZE, stdin));
     PUSH_STRING(p, l);
 }
 
-/**
- * \brief Imprime o topo da stack
- * 
- * @param p Apontador para a stack
- */
 void imprimeTopo (MyStack *p){
-    Data x = POP(p);
-    PUSH(p, x);
-    PRINT_TOP(x);
+    Data x = topo(p);
+    TYPE wichType = x.tipo;
+    
+        switch(wichType){
+            case LONG:
+                printf("%ld", x.LONG);
+                break;
+            case DOUBLE:
+                printf("%g", x.DOUBLE);
+                break;
+            case CHAR:
+                printf("%c", x.CHAR);
+                break;
+            case STRING:
+                printf("%s", x.STRING);
+                break;
+        }
+    printf("\n");
 }
 
-/**
- * \brief Converte o topo da stack num inteiro
- * 
- * @param p Apontador para a stack
- */
 void converte_int (MyStack *p){
     if (has_type(topo(p), STRING)) {
         char *sx = POP_STRING(p);
@@ -297,11 +218,6 @@ void converte_int (MyStack *p){
     }
 }
 
-/**
- * \brief Converter o topo da stack num float
- * 
- * @param p Apontador para a stack
- */
 void converteFloat (MyStack *p){
     if (has_type(topo(p), STRING)) {
         char *sx = POP_STRING(p);
@@ -312,22 +228,12 @@ void converteFloat (MyStack *p){
     }
 }
 
-/**
- * \brief Converter o topo da stack num char 
- * 
- * @param p Apontador para a stack
- */
 void converteChar (MyStack *p){
     Data x = POP(p);
     char cx = GET_AS_CHAR(x);
     PUSH_CHAR(p, cx);
 }
 
-/**
- * \brief Determina se os dois elementos são iguais, caso negativo retorna 0
- * 
- * @param p Apontador para a stack  
- */
 void igual (MyStack *p){
     Data x = POP(p);
     double dx = GET_AS_DOUBLE(x);
@@ -340,11 +246,6 @@ void igual (MyStack *p){
     }
 }
 
-/**
- * \brief Indica o menor entre dois elementos
- * 
- * @param p Apontador para a stack 
- */
 void menor (MyStack *p){
     Data x = POP(p);
     double dx = GET_AS_DOUBLE(x);
@@ -357,11 +258,6 @@ void menor (MyStack *p){
     }
 }
 
-/**
- * \brief Indica o maior de dois elementos 
- * 
- * @param p Apontador para a stack
- */
 void maior (MyStack *p){
     Data x = POP(p);
     double dx = GET_AS_DOUBLE(x);
@@ -373,7 +269,6 @@ void maior (MyStack *p){
         PUSH_LONG(p, 0);
     }
 }
-
 
 void negacao (MyStack *p){
     Data x = POP(p);
@@ -394,6 +289,7 @@ void e_shortcut (MyStack *p){
         PUSH_DOUBLE(p, 0);
     } else {
         PUSH_DOUBLE(p, dx);
+}
 }
 
 void ou_shortcut (MyStack *p){
@@ -445,3 +341,24 @@ void ifThenElse (MyStack *p){
         PUSH_DOUBLE(p, dx);
     }
 }
+
+#define MyStack_OPERATION(_tipo, _name)         \
+  void PUSH_##_name(MyStack *p, _tipo val) {    \
+    Data elem;                                  \
+    elem.tipo = _name;                          \
+    elem._name = val;                           \
+    PUSH(p, elem);                              \
+  }                                             \
+  _tipo POP_##_name(MyStack *p) {               \
+    Data elem = POP(p);                         \
+    assert(elem.tipo == _name);                 \
+    return elem._name;                          \
+  }
+
+MyStack_OPERATION(long, LONG)
+MyStack_OPERATION(double, DOUBLE)
+MyStack_OPERATION(char, CHAR)
+MyStack_OPERATION(char *, STRING)
+MyStack_OPERATION(struct Pilha *, ARRAY)
+ 
+

@@ -1,6 +1,3 @@
-/**
- * @file Este ficheiro contém a função parser
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,12 +6,9 @@
 
 #include "parser.h"
 #include "stack.h"
+#include "math.h"
+#include "arrays.h"
 
-/**
- * \brief A função parser faz o parser de uma dada linha atribuida como argumento
- * 
- * @param line É a linha que foi lida e da qual se vai fazer o parser
- */
 void parser (char *line){
     
     MyStack *p = inicia_MyStack ();
@@ -35,6 +29,288 @@ void parser (char *line){
         } else if(strlen(sobra2) == 0){
                     PUSH_DOUBLE(p, val_d);
 
+            
+//            TENTAR CONST CHAR !!!!!
+//        } else {
+//            switch (*token) {
+//                case '+':
+//                    soma(p);
+//                    break;
+//                case '-':
+//                    subtracao(p);
+//                    break;
+//                case '*':
+//                    multiplicacao(p);
+//                    break;
+//                case '/':
+//                    divisao(p);
+//                    break;
+//                case '#':
+//                    expoente(p);
+//                    break;
+//                case '&':
+//                    e_comercial(p);
+//                    break;
+//                case '|':
+//                    ou_barra(p);
+//                    break;
+//                case '^':
+//                    my_xor(p);
+//                    break;
+//                case '~':
+//                    my_not(p);
+//                    break;
+//                case '%':
+//                    resto_div(p);
+//                    break;
+//                case '(':
+//                    decrementar(p);
+//                    break;
+//                case ')':
+//                    incrementar(p);
+//                    break;
+//                case '_':
+//                    duplicar(p);
+//                    break;
+//                case ';':
+//                    my_pop(p);
+//                    break;
+//                case '\\':
+//                    trocar_2(p);
+//                    break;
+//                case '@':
+//                    roda_3(p);
+//                    break;
+//                case '$':
+//                    copia(p);
+//                    break;
+//                case 'l':
+//                    ler_linha(p);
+//                    break;
+//                case 'p':
+//                    imprimeTopo(p);
+//                    break;
+//                case 'i':
+//                    converte_int(p);
+//                    break;
+//                case 'f':
+//                    converteFloat(p);
+//                    break;
+//                case 'c':
+//                    converteChar(p);
+//                    break;
+//                case '=':
+//                    igual(p);
+//                    break;
+//                case '<':
+//                    menor(p);
+//                    break;
+//                case '>':
+//                    maior(p);
+//                    break;
+//                case '!':
+//                    negacao(p);
+//                    break;
+//                case 'e':
+//                    switch (*token) {
+//                        case '&':
+//                            e_shortcut(p);
+//                            break;
+//                        case '|':
+//                            ou_shortcut(p);
+//                            break;
+//                        case '<':
+//                            menor_entre_2(p);
+//                            break;
+//                        case '>':
+//                            maior_entre_2(p);
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//
+//                    break;
+////                case 'e|':
+////                    ou_shortcut(p);
+////                    break;
+////                case 'e<':
+////                    menor_entre_2(p);
+////                    break;
+////                case 'e>':
+////                    maior_entre_2(p);
+////                    break;
+//                case '?':
+//                    ifThenElse(p);
+//                    break;
+//
+//                case 'A':
+//                    variaveis(p, 'A');
+//                    break;
+//                case 'B':
+//                    variaveis(p, 'B');
+//                    break;
+//                case 'C':
+//                    variaveis(p, 'C');
+//                    break;
+//                case 'D':
+//                    variaveis(p, 'D');
+//                    break;
+//                case 'E':
+//                    variaveis(p, 'E');
+//                    break;
+//                case 'F':
+//                    variaveis(p, 'F');
+//                    break;
+//                case 'G':
+//                    variaveis(p, 'G');
+//                    break;
+//                case 'H':
+//                    variaveis(p, 'H');
+//                    break;
+//                case 'I':
+//                    variaveis(p, 'I');
+//                    break;
+//                case 'J':
+//                    variaveis(p, 'J');
+//                    break;
+//                case 'K':
+//                    variaveis(p, 'K');
+//                    break;
+//                case 'L':
+//                    variaveis(p, 'L');
+//                    break;
+//                case 'M':
+//                    variaveis(p, 'M');
+//                    break;
+//                case 'N':
+//                    variaveis(p, 'N');
+//                    break;
+//                case 'O':
+//                    variaveis(p, 'O');
+//                    break;
+//                case 'P':
+//                    variaveis(p, 'P');
+//                    break;
+//                case 'Q':
+//                    variaveis(p, 'Q');
+//                    break;
+//                case 'R':
+//                    variaveis(p, 'R');
+//                    break;
+//                case 'S':
+//                    variaveis(p, 'S');
+//                    break;
+//                case 'T':
+//                    variaveis(p, 'T');
+//                    break;
+//                case 'U':
+//                    variaveis(p, 'U');
+//                    break;
+//                case 'V':
+//                    variaveis(p, 'V');
+//                    break;
+//                case 'W':
+//                    variaveis(p, 'W');
+//                    break;
+//                case 'X':
+//                    variaveis(p, 'X');
+//                    break;
+//                case 'Y':
+//                    variaveis(p, 'Y');
+//                    break;
+//                case 'Z':
+//                    variaveis(p, 'Z');
+//                    break;
+//
+//                case ':':
+//                    switch (*token) {
+//
+//                        case 'A':
+//                            variaveis(p, 'A');
+//                            break;
+//                        case 'B':
+//                            variaveis(p, 'B');
+//                            break;
+//                        case 'C':
+//                            variaveis(p, 'C');
+//                            break;
+//                        case 'D':
+//                            variaveis(p, 'D');
+//                            break;
+//                        case 'E':
+//                            variaveis(p, 'E');
+//                            break;
+//                        case 'F':
+//                            variaveis(p, 'F');
+//                            break;
+//                        case 'G':
+//                            variaveis(p, 'G');
+//                            break;
+//                        case 'H':
+//                            variaveis(p, 'H');
+//                            break;
+//                        case 'I':
+//                            variaveis(p, 'I');
+//                            break;
+//                        case 'J':
+//                            variaveis(p, 'J');
+//                            break;
+//                        case 'K':
+//                            variaveis(p, 'K');
+//                            break;
+//                        case 'L':
+//                            variaveis(p, 'L');
+//                            break;
+//                        case 'M':
+//                            variaveis(p, 'M');
+//                            break;
+//                        case 'N':
+//                            variaveis(p, 'N');
+//                            break;
+//                        case 'O':
+//                            variaveis(p, 'O');
+//                            break;
+//                        case 'P':
+//                            variaveis(p, 'P');
+//                            break;
+//                        case 'Q':
+//                            variaveis(p, 'Q');
+//                            break;
+//                        case 'R':
+//                            variaveis(p, 'R');
+//                            break;
+//                        case 'S':
+//                            variaveis(p, 'S');
+//                            break;
+//                        case 'T':
+//                            variaveis(p, 'T');
+//                            break;
+//                        case 'U':
+//                            variaveis(p, 'U');
+//                            break;
+//                        case 'V':
+//                            variaveis(p, 'V');
+//                            break;
+//                        case 'W':
+//                            variaveis(p, 'W');
+//                            break;
+//                        case 'X':
+//                            variaveis(p, 'X');
+//                            break;
+//                        case 'Y':
+//                            variaveis(p, 'Y');
+//                            break;
+//                        case 'Z':
+//                            variaveis(p, 'Z');
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//
+//                default:
+//                    break;
+//            }
+//
 //            operações stacl -- Guiao 1
         } else if (strcmp(token, "+") == 0){
             soma (p);
@@ -94,7 +370,7 @@ void parser (char *line){
 
         } else if (strcmp(token, "p") == 0){
             imprimeTopo (p);
-            
+
         } else if (strcmp(token, "i") == 0){
             converte_int (p);
 
@@ -103,7 +379,7 @@ void parser (char *line){
 
         } else if (strcmp(token, "c") == 0){
             converteChar (p);
-            
+
 //            logica -- GUIAO 3
         } else if (strcmp(token, "=")==0) {
             igual (p);
@@ -116,7 +392,7 @@ void parser (char *line){
 
         } else if (strcmp(token, "!") == 0){
             negacao (p);
-            
+
         } else if (strcmp(token, "e&") == 0){
             e_shortcut (p);
 
@@ -240,7 +516,16 @@ void parser (char *line){
             add_valor(p, 'Y');
         } else if (strcmp(token, ":Z") == 0){
             add_valor(p, 'Z');
+//            ARRAYS
+        } else if (strcmp(token, "]") == 0){
+            // tamanho do array
+            
+        } else if (strcmp(token, "[") == 0){
+
+
         }
+    
+
     }
     PRINT_STACK(p);
 }

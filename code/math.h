@@ -1,4 +1,10 @@
+#ifndef math_h
+#define math_h
+
+
 #include <stdio.h>
+#include <assert.h>
+
 #include "stack.h"
 
 void soma (MyStack *p);
@@ -20,7 +26,7 @@ void roda_3 (MyStack *p);
 void copia (MyStack *p);
 void ler_linha (MyStack *p);
 void imprimeTopo (MyStack *p);
-void converte_int (MyStack);
+void converte_int (MyStack *p);
 void converteFloat (MyStack *p);
 void converteChar (MyStack *p);
 void igual (MyStack *p);
@@ -33,3 +39,7 @@ void menor_entre_2 (MyStack *p);
 void maior_entre_2 (MyStack *p);
 void ifThenElse (MyStack *p);
 
+ 
+
+
+#endif /* math */

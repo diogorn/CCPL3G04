@@ -6,7 +6,7 @@
 #define SIZE 10240
 
 typedef enum tipo{
-    LONG=1, DOUBLE=2, CHAR=4, STRING=8
+    LONG=1, DOUBLE=2, CHAR=4, STRING=8, ARRAY=10
 
 }TYPE;
 
@@ -16,15 +16,24 @@ typedef struct TipoDados{
     double DOUBLE;
     char CHAR;
     char *STRING;
-}Data ;
+    struct arrays *ARRAY;
+    
+}Data;
+
+typedef struct arrays{
+    int size;
+    int n_elementos;
+    Data array;
+}MyArray;
+
 
 typedef struct Pilha{
     Data array[26];
     Data *stack;
     int size;
     int n_elementos;
+//    int pos;
 }MyStack;
-
 
 
 MyStack *inicia_MyStack();
@@ -60,6 +69,7 @@ MyStack_OPERATION_PROTO(long, LONG)
 MyStack_OPERATION_PROTO(double, DOUBLE)
 MyStack_OPERATION_PROTO(char, CHAR)
 MyStack_OPERATION_PROTO(char *, STRING)
+MyStack_OPERATION_PROTO(struct Pilha *, ARRAY)
 
 
 #endif /* stack_h */
