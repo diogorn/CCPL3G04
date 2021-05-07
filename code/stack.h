@@ -1,15 +1,28 @@
+/**
+  *@file Ficheiro                 !!!!!!!!!!!!!!!!!!!!!!           .
+  *\brief Neste ficheiro está presente mascáras, estruturas de dados e de stack,bem omo funções utilizadas na stack.
+  *@date April 2021
+  *@returns                    !!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
 #ifndef stack_h
 #define stack_h
 
 #include <stdio.h>
 
 #define SIZE 10240
+/**
+ * Struct que enumera os tipos e que vai aplicá-los na struct data.
+ */
+typedef enum tipo{ 
+   LONG = 1,    /**< Tipo Long com o valor 1 (2⁰) associado */
+   DOUBLE = 2,  /**< Tipo Double com o valor 2 (2¹) associado */
+   CHAR = 4,    /**< Tipo Char com o valor 4 (2²) associado */
+   STRING = 8   /**< Tipo String com o valor 8 (2³) associado */
+} TYPE;
 
-typedef enum tipo{
-    LONG=1, DOUBLE=2, CHAR=4, STRING=8, ARRAY=10
-
-}TYPE;
-
+/**
+ * Uma struct que nos dá os tipos de dados que estamos a usar na stack
+ */
 typedef struct TipoDados{
     TYPE tipo;
     long LONG;
@@ -17,16 +30,21 @@ typedef struct TipoDados{
     char CHAR;
     char *STRING;
     struct arrays *ARRAY;
-    
 }Data;
 
+/**
+ * Definição de uma struct com as caracteristicas da stack.
+ */
 typedef struct arrays{
     int size;
     int n_elementos;
     Data array;
 }MyArray;
 
-
+/**
+ * \struct Stack  
+ * \brief Esta estrutura representa a Stack 
+ */
 typedef struct Pilha{
     Data array[26];
     Data *stack;
@@ -35,7 +53,9 @@ typedef struct Pilha{
 //    int pos;
 }MyStack;
 
-
+/**
+ * \brief Definição dos protótipos das funções utilizadas na stack.
+ */
 MyStack *inicia_MyStack();
 int is_empty(MyStack *p); // inutil ¿?
 Data topo(MyStack *p);
@@ -62,6 +82,9 @@ void variaveis_pre_definidas(MyStack *p);
 
 
 // macros
+/**
+ * \brief Definição de uma macro para os operadores da stack.
+ */
 #define MyStack_OPERATION_PROTO(_tipo, _name)   \
   void PUSH_##_name(MyStack *p, _tipo val);     \
 _tipo POP_##_name(MyStack *p);
